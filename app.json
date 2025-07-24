@@ -4,7 +4,12 @@
     "slug": "food-recipe-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./libs/common/design-system/assets/images/app-logo.png",
+    "splash": {
+      "image": "./libs/common/design-system/assets/images/app-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "scheme": "foodrecipemobile",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -12,12 +17,16 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.detour-2205.foodrecipemobile",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "Ứng dụng cần truy cập camera để chụp ảnh.",
+        "NSPhotoLibraryUsageDescription": "Ứng dụng cần truy cập thư viện ảnh để hiển thị và lưu ảnh.",
+        "NSLocationWhenInUseUsageDescription": "Ứng dụng cần quyền truy cập vị trí để cung cấp các tính năng liên quan.",
+        "NSLocationAlwaysUsageDescription": "Ứng dụng cần quyền truy cập vị trí ngay cả khi không mở."
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./libs/common/design-system/assets/images/app-logo.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -26,14 +35,14 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./libs/common/design-system/assets/images/app-logo.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./libs/common/design-system/assets/images/app-logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
