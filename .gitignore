@@ -38,4 +38,8 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# yarn
+.yarn
+
 app-example
+assets
