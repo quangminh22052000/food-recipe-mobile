@@ -56,6 +56,7 @@ const config = [
       // ⚠️ Rule khác
       "no-unused-vars": "off",
       "import/no-unresolved": "off",
+      "@typescript-eslint/no-require-imports": "off",
     },
   },
   {
