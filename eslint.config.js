@@ -7,6 +7,21 @@ import tseslint from "typescript-eslint"
 const config = [
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  
+  // ✅ Định nghĩa môi trường Node cho các file cấu hình như app.config.js
+  {
+    files: ["app.config.js", "babel.config.js", "metro.config.js"],
+    languageOptions: {
+      env: {
+        node: true,
+      },
+      globals: {
+        process: "readonly",
+      },
+    },
+  },
+
+  // ✅ Cấu hình cho source code
   {
     files: ["**/*.{ts,tsx,js,jsx}"],
     languageOptions: {

@@ -1,10 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react"
 
+import Constants from "expo-constants"
 import { useRouter } from "expo-router"
 import { MotiView } from "moti"
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
+
+const apiUrl = Constants.expoConfig?.extra?.authApiUrl
+console.log(`API URL: ${apiUrl}`)
 
 export default function NotFoundScreen() {
   const router = useRouter()

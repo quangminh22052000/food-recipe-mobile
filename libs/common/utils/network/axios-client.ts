@@ -1,7 +1,10 @@
 import axios from "axios"
+import Constants from "expo-constants"
+
+const authApiUrl = Constants.expoConfig?.extra?.authApiUrl
 
 export const axiosClient = axios.create({
-  baseURL: `${process.env.EXPO_PUBLIC_AUTH_API_URL}`, // update this to your API URL
+  baseURL: authApiUrl, // update this to your API URL
   headers: {
     "Content-Type": "application/json",
   },
