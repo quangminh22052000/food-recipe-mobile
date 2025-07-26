@@ -1,41 +1,41 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useRouter } from "expo-router";
-import { useTranslation } from "react-i18next";
-import { StyleSheet } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { useRouter } from "expo-router"
+import { useTranslation } from "react-i18next"
+import { StyleSheet } from "react-native"
+import { Button, Text } from "react-native-paper"
 
-import { LoginForm } from "@/libs/auth/components";
+import { LoginForm } from "@/libs/auth/components"
 import {
   ScreenWrapper,
   SwitchLanguage,
-} from "@/libs/common/design-system/components";
-import { useThemeContext } from "@/libs/common/design-system/theme";
-import { useAppStore } from "@/libs/common/store";
+} from "@/libs/common/design-system/components"
+import { useThemeContext } from "@/libs/common/design-system/theme"
+import { useAppStore } from "@/libs/common/store"
 import {
   errorHandling,
   successHandling,
-} from "@/libs/common/utils/notification";
+} from "@/libs/common/utils/notification"
 
 export default function Index() {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("common")
 
-  const router = useRouter();
+  const router = useRouter()
 
-  const { count, increase, decrease, reset } = useAppStore();
+  const { count, increase, decrease, reset } = useAppStore()
 
-  const { toggleTheme, theme } = useThemeContext();
+  const { toggleTheme, theme } = useThemeContext()
 
   const handleSuccess = () => {
-    successHandling("Success", "RootLayout");
-  };
+    successHandling("Success", "RootLayout")
+  }
 
   const handleError = () => {
-    errorHandling("Error", "RootLayout");
-  };
+    errorHandling("Error", "RootLayout")
+  }
 
   const handleNotfound = () => {
-    router.push("/+not-found");
-  };
+    router.push("/+not-found")
+  }
 
   return (
     <ScreenWrapper contentContainerStyle={styles.mainContainer}>
@@ -65,7 +65,7 @@ export default function Index() {
         {"Not Found"}
       </Button>
     </ScreenWrapper>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-});
+})

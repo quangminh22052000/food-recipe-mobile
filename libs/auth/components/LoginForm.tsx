@@ -11,9 +11,10 @@ import {
 import { Button, TextInput as RNTextInput } from "react-native-paper"
 import * as Yup from "yup"
 
-import { LoginPayload } from "../types"
 import { TextInput } from "@/libs/common/design-system/components"
 import { successHandling } from "@/libs/common/utils/notification"
+
+import { LoginPayload } from "../types"
 
 export const LoginForm = () => {
   const { t } = useTranslation("auth")

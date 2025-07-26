@@ -8,7 +8,7 @@ const config = [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
+    files: ["**/*.{ts,tsx,js,jsx}"],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
@@ -26,12 +26,12 @@ const config = [
         "error",
         {
           groups: [
-            "builtin",      // React, NodeJS
-            "external",     // Thư viện ngoài
-            "internal",     // alias nội bộ như @/
+            "builtin", // React, NodeJS
+            "external", // Thư viện ngoài
+            "internal", // alias nội bộ như @/
             ["parent", "sibling", "index"],
             "object",
-            "type"
+            "type",
           ],
           pathGroups: [
             {

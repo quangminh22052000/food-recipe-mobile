@@ -1,11 +1,13 @@
-import { QueryClientProvider } from "@tanstack/react-query";
-import { Stack } from "expo-router";
-import FlashMessage from "react-native-flash-message";
-import "../libs/common/utils/i18n";
+import React from "react"
 
-import { Header, RootHeader } from "@/libs/common/design-system/components";
-import { ThemeProvider } from "@/libs/common/design-system/theme";
-import { queryClient } from "@/libs/common/utils/network";
+import { QueryClientProvider } from "@tanstack/react-query"
+import { Stack } from "expo-router"
+import FlashMessage from "react-native-flash-message"
+
+import { Header, RootHeader } from "@/libs/common/design-system/components"
+import { ThemeProvider } from "@/libs/common/design-system/theme"
+import { queryClient } from "@/libs/common/utils/network"
+import "../libs/common/utils/i18n"
 
 export default function RootLayout() {
   return (
@@ -14,8 +16,7 @@ export default function RootLayout() {
         <Stack
           screenOptions={() => ({
             animation: "slide_from_right",
-          })}
-        >
+          })}>
           <Stack.Screen
             name="index"
             options={{
@@ -32,5 +33,5 @@ export default function RootLayout() {
         <FlashMessage position="top" />
       </ThemeProvider>
     </QueryClientProvider>
-  );
+  )
 }
