@@ -1,0 +1,2 @@
+vì file eas.json cũng được push lên git thì env key cũng sẽ bị lộ, 
+đến khi nào push hay build lần đầu nhớ tìm hiểu cái này lại trên chat gpt
