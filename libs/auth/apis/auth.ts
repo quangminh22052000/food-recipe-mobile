@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosRequestConfig } from "axios"
 
 import { axiosClient } from "@/libs/common/utils/network"

@@ -34,7 +34,7 @@ export default function Index() {
   }
 
   const handleNotfound = () => {
-    router.push("/+not-found")
+    router.push("/not-found")
   }
 
   return (
