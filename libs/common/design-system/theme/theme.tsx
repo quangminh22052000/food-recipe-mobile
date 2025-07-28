@@ -1,26 +1,38 @@
 import React, { createContext, useContext, useState } from "react"
 
+import {
+  DefaultTheme as NavigationLight,
+  DarkTheme as NavigationDark,
+} from "@react-navigation/native"
+import merge from "deepmerge"
 import { StatusBar } from "expo-status-bar"
-import { MD3LightTheme, MD3DarkTheme, PaperProvider } from "react-native-paper"
+import {
+  MD3LightTheme as PaperLight,
+  MD3DarkTheme as PaperDark,
+  PaperProvider,
+} from "react-native-paper"
 
 import { colors } from "../colors"
 
+const CombinedLightTheme = merge(PaperLight, NavigationLight)
+const CombinedDarkTheme = merge(PaperDark, NavigationDark)
+
 const lightTheme = {
-  ...MD3LightTheme,
+  ...CombinedLightTheme,
   colors: {
-    ...MD3LightTheme.colors,
+    ...CombinedLightTheme.colors,
     primary: "#6200ee",
-    background: colors.lightModeBackground, // Light Mode Background
+    background: colors.lightModeBackground,
     text: colors.dark,
   },
 }
 
 const darkTheme = {
-  ...MD3DarkTheme,
+  ...CombinedDarkTheme,
   colors: {
-    ...MD3DarkTheme.colors,
+    ...CombinedDarkTheme.colors,
     primary: "#bb86fc",
-    background: colors.darkModeBackground, // Dark Mode Background
+    background: colors.darkModeBackground,
     text: colors.white,
   },
 }
