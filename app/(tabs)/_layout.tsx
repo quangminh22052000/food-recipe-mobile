@@ -3,10 +3,14 @@ import React from "react"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
 import { Tabs } from "expo-router"
 
+import TabBar from "@/libs/common/design-system/components/TabBar"
+
 const TabLayout = () => {
   return (
     <Tabs
+      tabBar={props => <TabBar {...props} />}
       screenOptions={{
+        // headerShown: false,
         animation: "shift",
       }}>
       <Tabs.Screen
