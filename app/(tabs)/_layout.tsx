@@ -4,14 +4,22 @@ import FontAwesome from "@expo/vector-icons/FontAwesome"
 import { Tabs } from "expo-router"
 
 import TabBar from "@/libs/common/design-system/components/TabBar"
+import { useThemeContext } from "@/libs/common/design-system/theme"
 
 const TabLayout = () => {
+  const { theme } = useThemeContext()
   return (
     <Tabs
       tabBar={props => <TabBar {...props} />}
       screenOptions={{
-        // headerShown: false,
         animation: "shift",
+        headerStyle: {
+          backgroundColor: theme.colors.headerBackground,
+        },
+        headerTintColor: theme.colors.text,
+        headerTitleStyle: {
+          color: theme.colors.text,
+        },
       }}>
       <Tabs.Screen
         name="home"

@@ -4,10 +4,16 @@ import { BottomTabBarProps } from "@react-navigation/bottom-tabs"
 import { View, StyleSheet } from "react-native"
 
 import TabBarButton from "./TabBarButton"
+import { useThemeContext } from "../theme"
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
+  const { theme } = useThemeContext()
   return (
-    <View style={styles.tabbar}>
+    <View
+      style={[
+        styles.tabbar,
+        { backgroundColor: theme.colors.tabBarBackground },
+      ]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key]
         const label = (() => {

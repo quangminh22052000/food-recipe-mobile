@@ -24,6 +24,8 @@ const lightTheme = {
     primary: "#6200ee",
     background: colors.lightModeBackground,
     text: colors.dark,
+    headerBackground: colors.headerLightBackground,
+    tabBarBackground: colors.tabBarLightBackground,
   },
 }
 
@@ -34,6 +36,8 @@ const darkTheme = {
     primary: "#bb86fc",
     background: colors.darkModeBackground,
     text: colors.white,
+    headerBackground: colors.headerDarkBackground,
+    tabBarBackground: colors.tabBarDarkBackground,
   },
 }
 
