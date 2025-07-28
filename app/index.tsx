@@ -1,77 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useRouter } from "expo-router"
-import { useTranslation } from "react-i18next"
-import { StyleSheet } from "react-native"
-import { Button, Text } from "react-native-paper"
+import { useEffect, useState } from "react"
 
-import { LoginForm } from "@/libs/auth/components"
-import {
-  ScreenWrapper,
-  SwitchLanguage,
-} from "@/libs/common/design-system/components"
-import { useThemeContext } from "@/libs/common/design-system/theme"
-import { useAppStore } from "@/libs/common/store"
-import {
-  errorHandling,
-  successHandling,
-} from "@/libs/common/utils/notification"
+import { Redirect, type RelativePathString } from "expo-router"
 
-export default function Index() {
-  const { t } = useTranslation("common")
+import { useAuthStore } from "@/libs/auth/store"
 
-  const router = useRouter()
+export default function App() {
+  const { token } = useAuthStore()
 
-  const { count, increase, decrease, reset } = useAppStore()
+  const [refLink, setRefLink] = useState<string | null>(null)
 
-  const { toggleTheme, theme } = useThemeContext()
+  useEffect(() => {
+    // if (token) {
+    //   setRefLink("/home")
+    // } else {
+    //   setRefLink("/login")
+    // }
+    setRefLink("/home")
+  }, [])
 
-  const handleSuccess = () => {
-    successHandling("Success", "RootLayout")
+  if (refLink === null) {
+    return null
   }
 
-  const handleError = () => {
-    errorHandling("Error", "RootLayout")
-  }
-
-  const handleNotfound = () => {
-    router.push("/not-found")
-  }
-
-  return (
-    <ScreenWrapper contentContainerStyle={styles.mainContainer}>
-      <Text>{t("appName.full")}</Text>
-      <SwitchLanguage />
-      <LoginForm />
-      <Button mode="contained" onPress={handleSuccess}>
-        {"Success"}
-      </Button>
-      <Button mode="contained" onPress={handleError}>
-        {"Error"}
-      </Button>
-      <Text variant="titleLarge">Count: {count}</Text>
-      <Button mode="contained" onPress={increase}>
-        {"Increase"}
-      </Button>
-      <Button mode="contained" onPress={decrease}>
-        {"Decrease"}
-      </Button>
-      <Button mode="contained" onPress={reset}>
-        {"Reset"}
-      </Button>
-      <Button mode="contained" onPress={toggleTheme}>
-        {"Toggle Theme"}
-      </Button>
-      <Button mode="contained" onPress={handleNotfound}>
-        {"Not Found"}
-      </Button>
-    </ScreenWrapper>
-  )
+  return <Redirect href={refLink as RelativePathString} withAnchor />
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 10,
-  },
-})
