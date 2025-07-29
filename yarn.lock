@@ -2008,6 +2008,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-picker/picker@npm:2.11.1":
+  version: 2.11.1
+  resolution: "@react-native-picker/picker@npm:2.11.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: b662be771b89ed34704a5753f54fc11a2e65e11de14624756898c344291ecc43d1b1a2dae05190ad997eb461bb66a55e71239dc60608c5f88a246804536778b9
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:0.79.5":
   version: 0.79.5
   resolution: "@react-native/assets-registry@npm:0.79.5"
@@ -5507,6 +5517,7 @@ __metadata:
     "@babel/core": ^7.25.2
     "@eslint/js": ^9.32.0
     "@expo/vector-icons": ^14.1.0
+    "@react-native-picker/picker": 2.11.1
     "@react-native/eslint-plugin": ^0.80.2
     "@react-navigation/bottom-tabs": ^7.3.10
     "@react-navigation/elements": ^2.3.8

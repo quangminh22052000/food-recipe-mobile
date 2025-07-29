@@ -4,7 +4,11 @@ import { QueryClientProvider } from "@tanstack/react-query"
 import { Stack } from "expo-router"
 import FlashMessage from "react-native-flash-message"
 
-import { Header } from "@/libs/common/design-system/components"
+import {
+  GlobalDialog,
+  GlobalLoading,
+  Header,
+} from "@/libs/common/design-system/components"
 import { ThemeProvider } from "@/libs/common/design-system/theme"
 import { queryClient } from "@/libs/common/utils/network"
 import "../libs/common/utils/i18n"
@@ -26,6 +30,8 @@ export default function RootLayout() {
           />
         </Stack>
         <FlashMessage position="top" />
+        <GlobalLoading />
+        <GlobalDialog />
       </ThemeProvider>
     </QueryClientProvider>
   )
