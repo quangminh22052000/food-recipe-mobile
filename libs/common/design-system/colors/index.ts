@@ -54,7 +54,7 @@ export const lightColors = {
   yellowGoldBackground: "#643814",
   mutedWhite: "#A9A9A9",
   transparent: "transparent",
-  grey: "#737373",
+  grey: "#C7C9C7",
   darkGrey: "#171717",
   textGrey: "#A9A9A9",
   navbarGradient: ["#161D2A", "#0A0E14"],

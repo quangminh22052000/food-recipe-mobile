@@ -3,6 +3,7 @@ import React from "react"
 
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
+import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 
 type Props = {
@@ -25,15 +26,11 @@ const CategoryItem = (props: Props) => {
       <View
         style={[
           styles.iconContainer,
-          { backgroundColor: isActive ? theme.colors.primary : "" },
+          {
+            backgroundColor: isActive ? theme.colors.primary : lightColors.grey,
+          },
         ]}>
-        <Image
-          source={image}
-          style={[
-            styles.icon,
-            { backgroundColor: isActive ? theme.colors.primary : "" },
-          ]}
-        />
+        <Image source={image} style={styles.icon} resizeMode="contain" />
       </View>
       <Text>{label}</Text>
     </TouchableOpacity>
@@ -50,8 +47,12 @@ const styles = StyleSheet.create({
     margin: 7,
   },
   iconContainer: {
+    width: 70,
+    height: 70,
     borderRadius: 50,
     padding: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
   icon: {
     width: 60,
