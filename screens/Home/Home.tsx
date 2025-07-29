@@ -4,13 +4,14 @@ import { StyleSheet } from "react-native"
 
 import { ScreenWrapper } from "@/libs/common/design-system/components"
 
-import { HomeHeader, HomeIntro } from "./components"
+import { Categories, HomeHeader, HomeIntro } from "./components"
 
 export const Home = () => {
   return (
     <ScreenWrapper contentContainerStyle={styles.container}>
       <HomeHeader />
       <HomeIntro />
+      <Categories />
     </ScreenWrapper>
   )
 }

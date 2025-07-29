@@ -14,6 +14,8 @@ import {
   Icon,
 } from "react-native-paper"
 
+import { lightColors } from "../colors"
+
 interface SelectSearchProps {
   data: Array<{ id: string; label: string }>
   placeholder?: string
@@ -113,6 +115,8 @@ export const SelectSearch: React.FC<SelectSearchProps> = ({
 
 const styles = StyleSheet.create({
   container: {
+    borderRadius: 50,
+    padding: 4,
     marginVertical: 10,
   },
   inputContainer: {
@@ -124,6 +128,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     fontSize: 16,
+    color: lightColors.textGrey,
   },
   modal: {
     marginHorizontal: 15,
@@ -144,6 +149,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   closeButton: {
+    borderRadius: 6,
     marginTop: 20,
   },
 })
