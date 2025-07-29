@@ -9,6 +9,8 @@ import Animated, {
 } from "react-native-reanimated"
 
 import { icons } from "../assets/icons"
+import { lightColors } from "../colors"
+import { useThemeContext } from "../theme"
 
 type TabBarButtonProps = {
   isFocused: boolean
@@ -18,11 +20,10 @@ type TabBarButtonProps = {
   onLongPress: () => void
 }
 
-const primaryColor = "#0891b2"
-const greyColor = "#737373"
-
 export const TabBarButton = (props: TabBarButtonProps) => {
   const { isFocused, label, routeName, onPress, onLongPress } = props
+
+  const { theme } = useThemeContext()
 
   const scale = useSharedValue(0)
 
@@ -61,14 +62,14 @@ export const TabBarButton = (props: TabBarButtonProps) => {
       <Animated.View style={[animatedIconStyle]}>
         {routeName in icons &&
           icons[routeName as keyof typeof icons]({
-            color: isFocused ? primaryColor : greyColor,
+            color: isFocused ? theme.colors.primary : lightColors.grey,
           })}
       </Animated.View>
 
       <Animated.Text
         style={[
           {
-            color: isFocused ? primaryColor : greyColor,
+            color: isFocused ? theme.colors.primary : lightColors.grey,
             fontSize: 11,
           },
           animatedTextStyle,

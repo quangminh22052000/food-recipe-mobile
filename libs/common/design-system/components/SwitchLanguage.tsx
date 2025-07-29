@@ -2,7 +2,7 @@ import i18next from "i18next"
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
 
 import { images } from "../assets/images"
-import { colors } from "../colors"
+import { lightColors } from "../colors"
 
 export const SwitchLanguage = () => {
   const language = i18next.language
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   switchLang: {
     width: 50,
     height: 50,
-    borderColor: colors.white,
+    borderColor: lightColors.white,
     borderWidth: 1,
     borderRadius: 50,
   },

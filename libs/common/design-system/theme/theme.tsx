@@ -12,7 +12,7 @@ import {
   PaperProvider,
 } from "react-native-paper"
 
-import { colors } from "../colors"
+import { lightColors, darkColors } from "../colors"
 
 const CombinedLightTheme = merge(PaperLight, NavigationLight)
 const CombinedDarkTheme = merge(PaperDark, NavigationDark)
@@ -21,11 +21,11 @@ const lightTheme = {
   ...CombinedLightTheme,
   colors: {
     ...CombinedLightTheme.colors,
-    primary: "#6200ee",
-    background: colors.lightModeBackground,
-    text: colors.dark,
-    headerBackground: colors.headerLightBackground,
-    tabBarBackground: colors.tabBarLightBackground,
+    primary: lightColors.primary,
+    background: lightColors.lightModeBackground,
+    text: lightColors.dark,
+    headerBackground: lightColors.headerLightBackground,
+    tabBarBackground: lightColors.tabBarLightBackground,
   },
 }
 
@@ -33,11 +33,11 @@ const darkTheme = {
   ...CombinedDarkTheme,
   colors: {
     ...CombinedDarkTheme.colors,
-    primary: "#bb86fc",
-    background: colors.darkModeBackground,
-    text: colors.white,
-    headerBackground: colors.headerDarkBackground,
-    tabBarBackground: colors.tabBarDarkBackground,
+    primary: darkColors.primary,
+    background: darkColors.darkModeBackground,
+    text: darkColors.white,
+    headerBackground: darkColors.headerDarkBackground,
+    tabBarBackground: darkColors.tabBarDarkBackground,
   },
 }
 

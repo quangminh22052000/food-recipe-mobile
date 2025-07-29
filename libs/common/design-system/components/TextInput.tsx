@@ -7,7 +7,7 @@ import {
   TextInputProps,
 } from "react-native-paper"
 
-import { colors } from "../colors"
+import { lightColors } from "../colors"
 
 type Props = {
   containerStyle?: ViewStyle
@@ -18,7 +18,7 @@ export const TextInput: FC<Props> = props => {
   return (
     <View style={styles.inputContainer}>
       <RNTextInput
-        placeholderTextColor={colors.placeholderTextColor}
+        placeholderTextColor={lightColors.placeholderTextColor}
         {...props}
         style={[styles.input, props.style]}
         contentStyle={[{ paddingLeft: 10 }, props.contentStyle]}
