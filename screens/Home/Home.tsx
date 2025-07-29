@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native"
 
 import { ScreenWrapper } from "@/libs/common/design-system/components"
 
-import { Categories, HomeHeader, HomeIntro } from "./components"
+import { Categories, HomeHeader, HomeIntro, Recipies } from "./components"
 
 export const Home = () => {
   return (
@@ -12,6 +12,7 @@ export const Home = () => {
       <HomeHeader />
       <HomeIntro />
       <Categories />
+      <Recipies />
     </ScreenWrapper>
   )
 }
@@ -19,5 +20,6 @@ export const Home = () => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
+    paddingBottom: 100,
   },
 })

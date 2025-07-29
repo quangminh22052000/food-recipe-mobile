@@ -7,7 +7,7 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 import { images } from "@/libs/common/design-system/assets/images"
 import { SelectSearch } from "@/libs/common/design-system/components"
 
-import CategoryItem from "./CategoryItem"
+import { CategoryItem } from "./CategoryItem"
 
 const categories = [
   { id: "1", label: "Starter", image: images.starterMeal },
@@ -47,7 +47,7 @@ export const Categories = () => {
 
 const styles = StyleSheet.create({
   main: {
-    marginTop: 20,
+    marginVertical: 10,
     gap: 10,
   },
 })

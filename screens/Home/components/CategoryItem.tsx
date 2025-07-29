@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react"
 
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
+import { Text } from "react-native-paper"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
@@ -14,7 +15,7 @@ type Props = {
   setActiveCategory: (category: string) => void
 }
 
-const CategoryItem = (props: Props) => {
+export const CategoryItem = (props: Props) => {
   const { id, label, image, activeCategory, setActiveCategory } = props
 
   const isActive = activeCategory === id
@@ -36,8 +37,6 @@ const CategoryItem = (props: Props) => {
     </TouchableOpacity>
   )
 }
-
-export default CategoryItem
 
 const styles = StyleSheet.create({
   main: {
