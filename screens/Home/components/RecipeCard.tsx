@@ -9,15 +9,17 @@ export type RecipeProps = {
   id: string
   image: any
   name: string
+  description: string
 }
 
 type Props = {
   index: number
   recipe: RecipeProps
+  handleNavigate: (recipe: RecipeProps) => void
 }
 
 export const RecipeCard = (props: Props) => {
-  const { index, recipe } = props
+  const { index, recipe, handleNavigate } = props
   const isEven = index % 2 === 0
   return (
     <Animated.View
@@ -26,6 +28,7 @@ export const RecipeCard = (props: Props) => {
         .springify()
         .damping(12)}>
       <Pressable
+        onPress={() => handleNavigate(recipe)}
         style={[
           styles.main,
           { paddingLeft: isEven ? 0 : 8, paddingRight: isEven ? 8 : 0 },

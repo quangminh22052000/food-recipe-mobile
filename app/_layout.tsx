@@ -19,15 +19,18 @@ export default function RootLayout() {
       <ThemeProvider>
         <Stack
           screenOptions={() => ({
+            headerShown: false,
             animation: "slide_from_right",
           })}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="index" />
           <Stack.Screen
             name="not-found"
             options={{
+              headerShown: true,
               header: () => <Header title="Not Found" mode="small" />,
             }}
           />
+          <Stack.Screen name="(tabs)" />
         </Stack>
         <FlashMessage position="top" />
         <GlobalLoading />
