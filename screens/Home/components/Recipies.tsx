@@ -5,21 +5,10 @@ import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
-import { images } from "@/libs/common/design-system/assets/images"
+import { cookingRecipeData } from "@/libs/common/dummy-data"
+import { RecipeProps } from "@/libs/common/types/recipe"
 
-import { RecipeCard, RecipeProps } from "./RecipeCard"
-
-const data: RecipeProps[] = [
-  { id: "1", image: images.bunBo, name: "Bún bò", description: "Bún và bò" },
-  {
-    id: "2",
-    image: images.comSuon,
-    name: "Cơm sườn",
-    description: "Cơm và sườn",
-  },
-  { id: "3", image: images.huTieu, name: "Hủ tiếu", description: "Hủ và tiếu" },
-  { id: "4", image: images.phoBo, name: "Phở bò", description: "Phở và bò" },
-]
+import { RecipeCard } from "./RecipeCard"
 
 export const Recipies = () => {
   const router = useRouter()
@@ -41,7 +30,7 @@ export const Recipies = () => {
         Recipies
       </Text>
       <MasonryFlashList
-        data={data}
+        data={cookingRecipeData}
         numColumns={2}
         estimatedItemSize={200}
         keyExtractor={item => item.id}

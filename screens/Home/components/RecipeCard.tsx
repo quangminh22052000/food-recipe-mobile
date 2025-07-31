@@ -1,16 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react"
 
 import { Image, Pressable, StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
-export type RecipeProps = {
-  id: string
-  image: any
-  name: string
-  description: string
-}
+import { RecipeProps } from "@/libs/common/types/recipe"
 
 type Props = {
   index: number

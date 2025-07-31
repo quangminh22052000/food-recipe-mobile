@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 
 import {
   Feather,
@@ -7,34 +7,49 @@ import {
 } from "@expo/vector-icons"
 import { StyleSheet, View } from "react-native"
 
+import { cookingRecipeData } from "@/libs/common/dummy-data"
+import { RecipeProps } from "@/libs/common/types/recipe"
+
 import { MiscItem } from "./MiscItem"
 
-const micsData = [
-  {
-    figure: 35,
-    unit: "mins",
-    icon: () => (
-      <MaterialCommunityIcons name="clock-outline" size={24} color="black" />
-    ),
-  },
-  {
-    figure: 30,
-    unit: "servings",
-    icon: () => <FontAwesome5 name="users" size={24} color="black" />,
-  },
-  {
-    figure: 103,
-    unit: "cal",
-    icon: () => <MaterialCommunityIcons name="fire" size={24} color="black" />,
-  },
-  {
-    figure: 2,
-    unit: "cal",
-    icon: () => <Feather name="layers" size={24} color="black" />,
-  },
-]
+type MiscDataProps = {
+  recipeId: string
+}
 
-export const Misc = () => {
+export const Misc = (props: MiscDataProps) => {
+  const { recipeId } = props
+
+  const recipe = useMemo(() => {
+    return cookingRecipeData.find((item: RecipeProps) => item.id === recipeId)
+  }, [recipeId])
+
+  const micsData = [
+    {
+      figure: recipe?.cookingTime || "0",
+      unit: "mins",
+      icon: () => (
+        <MaterialCommunityIcons name="clock-outline" size={24} color="black" />
+      ),
+    },
+    {
+      figure: recipe?.numberOfServing || "1",
+      unit: "servings",
+      icon: () => <FontAwesome5 name="users" size={24} color="black" />,
+    },
+    {
+      figure: recipe?.numberOfCalories || "0",
+      unit: "cal",
+      icon: () => (
+        <MaterialCommunityIcons name="fire" size={24} color="black" />
+      ),
+    },
+    {
+      figure: recipe?.levelOfDifficulty || "Easy",
+      unit: "",
+      icon: () => <Feather name="layers" size={24} color="black" />,
+    },
+  ]
+
   return (
     <View style={styles.main}>
       {micsData.map((item, index) => (

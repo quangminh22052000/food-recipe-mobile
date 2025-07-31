@@ -3,10 +3,11 @@ import React from "react"
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
+import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 
 type Props = {
-  figure: number
+  figure: string
   unit: string
   icon: () => React.JSX.Element
 }
@@ -17,13 +18,25 @@ export const MiscItem = (props: Props) => {
 
   return (
     <View style={[styles.main, { backgroundColor: theme.colors.primary }]}>
-      <View style={styles.iconContainer}>{icon()}</View>
-      <Text variant="titleMedium" style={styles.textBold}>
+      <View
+        style={[styles.iconContainer, { backgroundColor: lightColors.white }]}>
+        {icon()}
+      </View>
+      <Text
+        variant="titleMedium"
+        style={[
+          styles.textBold,
+          { color: lightColors.white, textAlign: "center" },
+        ]}>
         {figure}
       </Text>
       <Text
         variant="bodySmall"
-        style={[styles.textCapitalize, styles.textBold]}>
+        style={[
+          styles.textCapitalize,
+          styles.textBold,
+          { color: lightColors.white },
+        ]}>
         {unit}
       </Text>
     </View>
@@ -32,6 +45,7 @@ export const MiscItem = (props: Props) => {
 
 const styles = StyleSheet.create({
   main: {
+    width: 77,
     height: 135,
     display: "flex",
     alignItems: "center",

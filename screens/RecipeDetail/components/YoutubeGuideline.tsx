@@ -1,10 +1,23 @@
-import React from "react"
+import React, { useMemo } from "react"
 
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 import YoutubePlayer from "react-native-youtube-iframe"
 
-export const YoutubeGuideline = () => {
+import { cookingRecipeData } from "@/libs/common/dummy-data"
+import { RecipeProps } from "@/libs/common/types/recipe"
+
+type YoutubeGuidelineProps = {
+  recipeId: string
+}
+
+export const YoutubeGuideline = (props: YoutubeGuidelineProps) => {
+  const { recipeId } = props
+
+  const recipe = useMemo(() => {
+    return cookingRecipeData.find((item: RecipeProps) => item.id === recipeId)
+  }, [recipeId])
+
   const getYoutubeVideoId = (url: string): string | null => {
     const regex =
       /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
@@ -19,9 +32,7 @@ export const YoutubeGuideline = () => {
       </Text>
       <YoutubePlayer
         height={300}
-        videoId={getYoutubeVideoId(
-          "https://www.youtube.com/watch?v=A_o2qfaTgKs",
-        )}
+        videoId={getYoutubeVideoId(recipe?.recipeVideoUrl || "") || ""}
       />
     </View>
   )

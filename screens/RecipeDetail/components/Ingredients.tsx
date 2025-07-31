@@ -1,28 +1,40 @@
-import React from "react"
+import React, { useMemo } from "react"
 
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
 import { useThemeContext } from "@/libs/common/design-system/theme"
+import { cookingRecipeData } from "@/libs/common/dummy-data"
+import { RecipeProps } from "@/libs/common/types/recipe"
 
-const ingrediantsList = ["1 cup of flour", "1 cup of sugar", "1 cup of butter"]
+type IngredientsProps = {
+  recipeId: string
+}
 
-export const Ingredients = () => {
+export const Ingredients = (props: IngredientsProps) => {
+  const { recipeId } = props
+
   const { theme } = useThemeContext()
+
+  const recipe = useMemo(() => {
+    return cookingRecipeData.find((item: RecipeProps) => item.id === recipeId)
+  }, [recipeId])
+
   return (
     <View style={styles.main}>
       <Text variant="titleMedium" style={styles.textBold}>
         Ingredients
       </Text>
       <View style={styles.ingredientContainer}>
-        {ingrediantsList.map((ingredient, index) => (
+        {recipe?.ingredients.map((ingredient, index) => (
           <View key={index} style={styles.ingredientsItem}>
             <View
               style={[styles.dot, { backgroundColor: theme.colors.primary }]}
             />
-            <Text key={index} variant="bodyLarge">
-              {ingredient}
+            <Text variant="bodyLarge" style={styles.textBold}>
+              {ingredient.quantity}
             </Text>
+            <Text variant="bodyLarge">{ingredient.name}</Text>
           </View>
         ))}
       </View>

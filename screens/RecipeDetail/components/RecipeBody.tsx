@@ -9,12 +9,13 @@ import { Misc } from "./Misc"
 import { YoutubeGuideline } from "./YoutubeGuideline"
 
 type Props = {
+  id: string
   name: string
   description: string
 }
 
 export const RecipeBody = (props: Props) => {
-  const { name, description } = props
+  const { id, name, description } = props
   return (
     <View style={styles.main}>
       <View style={styles.intro}>
@@ -23,10 +24,10 @@ export const RecipeBody = (props: Props) => {
         </Text>
         <Text variant="bodyLarge">{description}</Text>
       </View>
-      <Misc />
-      <Ingredients />
-      <Instructions />
-      <YoutubeGuideline />
+      <Misc recipeId={id} />
+      <Ingredients recipeId={id} />
+      <Instructions recipeId={id} />
+      <YoutubeGuideline recipeId={id} />
     </View>
   )
 }
