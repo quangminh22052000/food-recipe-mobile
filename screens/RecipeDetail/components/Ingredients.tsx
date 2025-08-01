@@ -2,6 +2,7 @@ import React, { useMemo } from "react"
 
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
+import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { cookingRecipeData } from "@/libs/common/dummy-data"
@@ -21,7 +22,9 @@ export const Ingredients = (props: IngredientsProps) => {
   }, [recipeId])
 
   return (
-    <View style={styles.main}>
+    <Animated.View
+      entering={FadeInDown.delay(200).duration(700).springify().damping(12)}
+      style={styles.main}>
       <Text variant="titleMedium" style={styles.textBold}>
         Ingredients
       </Text>
@@ -38,7 +41,7 @@ export const Ingredients = (props: IngredientsProps) => {
           </View>
         ))}
       </View>
-    </View>
+    </Animated.View>
   )
 }
 

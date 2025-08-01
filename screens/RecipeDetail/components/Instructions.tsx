@@ -1,7 +1,8 @@
 import React, { useMemo } from "react"
 
-import { StyleSheet, View } from "react-native"
+import { StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
+import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { RecipeProps } from "@/libs/common/types/recipe"
@@ -18,7 +19,9 @@ export const Instructions = (props: InstructionsProps) => {
   }, [recipeId])
 
   return (
-    <View style={styles.main}>
+    <Animated.View
+      entering={FadeInDown.delay(300).duration(700).springify().damping(12)}
+      style={styles.main}>
       <Text variant="titleMedium" style={styles.textBold}>
         Instructions
       </Text>
@@ -27,7 +30,7 @@ export const Instructions = (props: InstructionsProps) => {
           {index + 1}. {instruction}
         </Text>
       ))}
-    </View>
+    </Animated.View>
   )
 }
 

@@ -5,7 +5,8 @@ import {
   FontAwesome5,
   MaterialCommunityIcons,
 } from "@expo/vector-icons"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet } from "react-native"
+import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { RecipeProps } from "@/libs/common/types/recipe"
@@ -51,11 +52,13 @@ export const Misc = (props: MiscDataProps) => {
   ]
 
   return (
-    <View style={styles.main}>
+    <Animated.View
+      entering={FadeInDown.delay(100).duration(700).springify().damping(12)}
+      style={styles.main}>
       {micsData.map((item, index) => (
         <MiscItem key={index} {...item} />
       ))}
-    </View>
+    </Animated.View>
   )
 }
 

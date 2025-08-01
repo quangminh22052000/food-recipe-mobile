@@ -12,7 +12,7 @@ export const RecipeDetail = () => {
 
   return (
     <ScreenWrapper contentContainerStyle={styles.container}>
-      <RecipeHeader image={+image} />
+      <RecipeHeader id={`${id}`} image={+image} />
       <RecipeBody
         id={`${id}`}
         name={`${name}`}

@@ -1,7 +1,8 @@
 import React, { useMemo } from "react"
 
-import { StyleSheet, View } from "react-native"
+import { StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
+import Animated, { FadeInDown } from "react-native-reanimated"
 import YoutubePlayer from "react-native-youtube-iframe"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
@@ -26,7 +27,9 @@ export const YoutubeGuideline = (props: YoutubeGuidelineProps) => {
   }
 
   return (
-    <View style={styles.main}>
+    <Animated.View
+      entering={FadeInDown.delay(400).duration(700).springify().damping(12)}
+      style={styles.main}>
       <Text variant="titleMedium" style={styles.textBold}>
         Recipe Video
       </Text>
@@ -34,7 +37,7 @@ export const YoutubeGuideline = (props: YoutubeGuidelineProps) => {
         height={300}
         videoId={getYoutubeVideoId(recipe?.recipeVideoUrl || "") || ""}
       />
-    </View>
+    </Animated.View>
   )
 }
 

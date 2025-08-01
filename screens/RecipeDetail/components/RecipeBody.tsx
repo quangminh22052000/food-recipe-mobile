@@ -2,6 +2,7 @@ import React from "react"
 
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
+import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { Ingredients } from "./Ingredients"
 import { Instructions } from "./Instructions"
@@ -18,12 +19,14 @@ export const RecipeBody = (props: Props) => {
   const { id, name, description } = props
   return (
     <View style={styles.main}>
-      <View style={styles.intro}>
+      <Animated.View
+        entering={FadeInDown.duration(700).springify().damping(12)}
+        style={styles.intro}>
         <Text variant="titleLarge" style={styles.textBold}>
           {name}
         </Text>
         <Text variant="bodyLarge">{description}</Text>
-      </View>
+      </Animated.View>
       <Misc recipeId={id} />
       <Ingredients recipeId={id} />
       <Instructions recipeId={id} />

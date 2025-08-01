@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Image, Pressable, StyleSheet } from "react-native"
+import { Pressable, StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
@@ -10,6 +10,7 @@ type Props = {
   index: number
   recipe: RecipeProps
   handleNavigate: (recipe: RecipeProps) => void
+  imageAnimatedStyle?: React.ComponentProps<typeof Animated.Image>
 }
 
 export const RecipeCard = (props: Props) => {
@@ -27,9 +28,10 @@ export const RecipeCard = (props: Props) => {
           styles.main,
           { paddingLeft: isEven ? 0 : 8, paddingRight: isEven ? 8 : 0 },
         ]}>
-        <Image
+        <Animated.Image
           // source={{ uri: item.image }}
           source={recipe.image}
+          sharedTransitionTag={`recipe-${recipe.id}`}
           style={[styles.image, { height: index % 3 === 0 ? 250 : 200 }]}
           resizeMode="cover"
         />
