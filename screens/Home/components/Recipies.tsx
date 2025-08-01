@@ -56,6 +56,7 @@ export const Recipies = () => {
 
 const styles = StyleSheet.create({
   main: {
+    flex: 1,
     width: "100%",
     marginVertical: 10,
   },

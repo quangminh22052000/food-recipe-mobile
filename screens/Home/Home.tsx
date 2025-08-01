@@ -19,6 +19,7 @@ export const Home = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
     paddingHorizontal: 20,
     paddingBottom: 100,
   },
