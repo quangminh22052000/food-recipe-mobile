@@ -9,14 +9,14 @@ import { useThemeContext } from "@/libs/common/design-system/theme"
 
 type Props = {
   id: string
-  label: string
+  name: string
   image: any
   activeCategory: string
   setActiveCategory: (category: string) => void
 }
 
 export const CategoryItem = (props: Props) => {
-  const { id, label, image, activeCategory, setActiveCategory } = props
+  const { id, name, image, activeCategory, setActiveCategory } = props
 
   const isActive = activeCategory === id
 
@@ -33,7 +33,7 @@ export const CategoryItem = (props: Props) => {
         ]}>
         <Image source={image} style={styles.icon} resizeMode="contain" />
       </View>
-      <Text>{label}</Text>
+      <Text>{name}</Text>
     </TouchableOpacity>
   )
 }

@@ -1,21 +1,18 @@
-import React, { useState } from "react"
+import React from "react"
 
 import { FlashList } from "@shopify/flash-list"
 import { StyleSheet, View } from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
-import { images } from "@/libs/common/design-system/assets/images"
 import { SelectSearch } from "@/libs/common/design-system/components"
+import { categories } from "@/libs/common/dummy-data"
+import { useAppStore } from "@/libs/common/store"
 
 import { CategoryItem } from "./CategoryItem"
 
-const categories = [
-  { id: "1", label: "Starter", image: images.starterMeal },
-  { id: "2", label: "Noodle", image: images.noodle },
-]
-
 export const Categories = () => {
-  const [activeCategory, setActiveCategory] = useState<string>("")
+  const { typeName, setTypeName } = useAppStore()
+
   return (
     <View style={styles.main}>
       <SelectSearch
@@ -35,8 +32,8 @@ export const Categories = () => {
           renderItem={({ item }) => (
             <CategoryItem
               {...item}
-              activeCategory={activeCategory}
-              setActiveCategory={setActiveCategory}
+              activeCategory={typeName}
+              setActiveCategory={setTypeName}
             />
           )}
         />

@@ -18,11 +18,13 @@ interface AppState {
   //
   loading: boolean
   setLoading: (value: boolean) => void
-  //
   // dialog state
   dialog: DialogConfig
   showDialog: (config: Omit<DialogConfig, "visible">) => void
   hideDialog: () => void
+  // selected recipe type
+  typeName: string
+  setTypeName: (name: string) => void
 }
 
 export const useAppStore = create<AppState>(set => ({
@@ -71,4 +73,7 @@ export const useAppStore = create<AppState>(set => ({
         visible: false,
       },
     })),
+  //
+  typeName: "",
+  setTypeName: name => set({ typeName: name }),
 }))

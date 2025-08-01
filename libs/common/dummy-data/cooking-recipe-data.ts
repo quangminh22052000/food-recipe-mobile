@@ -1,11 +1,12 @@
 import { images } from "../design-system/assets/images"
+import { RecipeCategories } from "../enums/recipeCategories"
 import { RecipeProps } from "../types/recipe"
 
 export const cookingRecipeData: RecipeProps[] = [
   {
     id: "1",
     name: "Bún bò",
-    type: "Noodles",
+    typeName: RecipeCategories.NOODLE,
     image: images.bunBo,
     description: "Bún và bò",
     cookingTime: "35",
@@ -31,7 +32,7 @@ export const cookingRecipeData: RecipeProps[] = [
   {
     id: "2",
     name: "Cơm sườn",
-    type: "Noodles",
+    typeName: RecipeCategories.NOODLE,
     image: images.comSuon,
     description: "Cơm và sườn",
     cookingTime: "45",
@@ -57,7 +58,7 @@ export const cookingRecipeData: RecipeProps[] = [
   {
     id: "3",
     name: "Hủ tiếu",
-    type: "Noodles",
+    typeName: RecipeCategories.NOODLE,
     image: images.huTieu,
     description: "Hủ và tiếu",
     cookingTime: "30",
@@ -83,7 +84,7 @@ export const cookingRecipeData: RecipeProps[] = [
   {
     id: "4",
     name: "Phở bò",
-    type: "Noodles",
+    typeName: RecipeCategories.NOODLE,
     image: images.phoBo,
     description: "Phở và bò",
     cookingTime: "60",

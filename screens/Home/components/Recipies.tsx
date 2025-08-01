@@ -6,12 +6,16 @@ import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
+import { useAppStore } from "@/libs/common/store"
 import { RecipeProps } from "@/libs/common/types/recipe"
 
 import { RecipeCard } from "./RecipeCard"
 
 export const Recipies = () => {
   const router = useRouter()
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { typeName } = useAppStore()
 
   const handleNavigate = (recipe: RecipeProps) => {
     router.push({
