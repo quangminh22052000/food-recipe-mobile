@@ -11,19 +11,22 @@ type Props = {
   id: string
   name: string
   image: any
+  type: string
   activeCategory: string
   setActiveCategory: (category: string) => void
 }
 
 export const CategoryItem = (props: Props) => {
-  const { id, name, image, activeCategory, setActiveCategory } = props
+  const { name, image, type, activeCategory, setActiveCategory } = props
 
-  const isActive = activeCategory === id
+  const isActive = activeCategory === type
 
   const { theme } = useThemeContext()
 
   return (
-    <TouchableOpacity onPress={() => setActiveCategory(id)} style={styles.main}>
+    <TouchableOpacity
+      onPress={() => setActiveCategory(type)}
+      style={styles.main}>
       <View
         style={[
           styles.iconContainer,

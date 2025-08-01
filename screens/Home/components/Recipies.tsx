@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 
 import { MasonryFlashList } from "@shopify/flash-list"
 import { useRouter } from "expo-router"
@@ -14,8 +14,11 @@ import { RecipeCard } from "./RecipeCard"
 export const Recipies = () => {
   const router = useRouter()
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { typeName } = useAppStore()
+
+  const filteredRecipes = useMemo(() => {
+    return cookingRecipeData.filter(recipe => recipe.typeName === typeName)
+  }, [typeName])
 
   const handleNavigate = (recipe: RecipeProps) => {
     router.push({
@@ -34,7 +37,7 @@ export const Recipies = () => {
         Recipies
       </Text>
       <MasonryFlashList
-        data={cookingRecipeData}
+        data={typeName ? filteredRecipes : cookingRecipeData}
         numColumns={2}
         estimatedItemSize={200}
         keyExtractor={item => item.id}
