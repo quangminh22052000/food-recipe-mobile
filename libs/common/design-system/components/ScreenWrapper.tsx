@@ -5,7 +5,6 @@ import {
   ScrollViewProps,
   StyleProp,
   StyleSheet,
-  View,
   ViewStyle,
 } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -21,7 +20,6 @@ type Props = ScrollViewProps & {
 
 export const ScreenWrapper = ({
   children,
-  withScrollView = true,
   style,
   contentContainerStyle,
   ...rest
@@ -41,32 +39,19 @@ export const ScreenWrapper = ({
   ]
 
   return (
-    <>
-      {withScrollView ? (
-        <ScrollView
-          {...rest}
-          contentContainerStyle={contentContainerStyle}
-          keyboardShouldPersistTaps="always"
-          alwaysBounceVertical={false}
-          showsVerticalScrollIndicator={false}
-          style={[
-            containerStyle,
-            style,
-            { backgroundColor: theme.colors.background },
-          ]}>
-          {children}
-        </ScrollView>
-      ) : (
-        <View
-          style={[
-            containerStyle,
-            style,
-            { backgroundColor: theme.colors.background },
-          ]}>
-          {children}
-        </View>
-      )}
-    </>
+    <ScrollView
+      {...rest}
+      contentContainerStyle={contentContainerStyle}
+      keyboardShouldPersistTaps="always"
+      alwaysBounceVertical={false}
+      showsVerticalScrollIndicator={false}
+      style={[
+        containerStyle,
+        style,
+        { backgroundColor: theme.colors.background },
+      ]}>
+      {children}
+    </ScrollView>
   )
 }
 

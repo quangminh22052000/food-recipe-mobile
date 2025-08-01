@@ -40,6 +40,6 @@ yarn-error.*
 *.tsbuildinfo
 
 # yarn
-.yarn
+.yarn/cache
 
 app-example

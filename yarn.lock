@@ -2318,6 +2318,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@shopify/flash-list@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@shopify/flash-list@npm:2.0.0"
+  peerDependencies:
+    "@babel/runtime": "*"
+    react: "*"
+    react-native: "*"
+  checksum: 98a20461c38e39d99cc6002aa3a6175e892d1f01cccc40a4b66b5409963a81a5412b19dca6ddc8265e5d6e92ece553d31cb618abbc984d75960ab12bbc3ac31d
+  languageName: node
+  linkType: hard
+
 "@sinclair/typebox@npm:^0.27.8":
   version: 0.27.8
   resolution: "@sinclair/typebox@npm:0.27.8"
@@ -5568,6 +5579,7 @@ __metadata:
     "@react-navigation/bottom-tabs": ^7.3.10
     "@react-navigation/elements": ^2.3.8
     "@react-navigation/native": ^7.1.6
+    "@shopify/flash-list": ^2.0.0
     "@tanstack/react-query": ^5.83.0
     "@types/react": ~19.0.10
     "@types/react-native-vector-icons": ^6.4.18

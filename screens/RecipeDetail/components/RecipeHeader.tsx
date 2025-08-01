@@ -3,7 +3,7 @@ import React from "react"
 import { AntDesign, Entypo } from "@expo/vector-icons"
 import { useRouter } from "expo-router"
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, TouchableOpacity } from "react-native"
+import { Platform, StyleSheet, TouchableOpacity } from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { lightColors } from "@/libs/common/design-system/colors"
@@ -52,6 +52,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 500,
     borderRadius: 32,
+    borderTopLeftRadius: Platform.OS === "ios" ? 32 : 0,
+    borderTopRightRadius: Platform.OS === "ios" ? 32 : 0,
   },
   overlay: {
     width: "100%",
