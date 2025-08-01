@@ -1,6 +1,6 @@
 import React, { useMemo } from "react"
 
-import { MasonryFlashList } from "@shopify/flash-list"
+import MasonryList from "@react-native-seoul/masonry-list"
 import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
@@ -36,18 +36,19 @@ export const Recipies = () => {
       <Text variant="titleLarge" style={[styles.title, styles.textBold]}>
         Recipies
       </Text>
-      <MasonryFlashList
+      <MasonryList
         data={typeName ? filteredRecipes : cookingRecipeData}
+        keyExtractor={(item: RecipeProps) => item.id}
         numColumns={2}
-        estimatedItemSize={200}
-        keyExtractor={item => item.id}
-        renderItem={({ item, index }) => (
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item, i }) => (
           <RecipeCard
-            index={index}
-            recipe={item}
+            index={i}
+            recipe={item as RecipeProps}
             handleNavigate={handleNavigate}
           />
         )}
+        onEndReachedThreshold={0.1}
       />
     </View>
   )

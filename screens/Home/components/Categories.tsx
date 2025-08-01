@@ -1,7 +1,6 @@
 import React from "react"
 
-import { FlashList } from "@shopify/flash-list"
-import { StyleSheet, View } from "react-native"
+import { FlatList, StyleSheet, View } from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { SelectSearch } from "@/libs/common/design-system/components"
@@ -21,11 +20,10 @@ export const Categories = () => {
         placeholder="Search any recipe"
       />
       <Animated.View entering={FadeInDown.duration(500).springify()}>
-        <FlashList
+        <FlatList
           data={categories}
           horizontal
           showsHorizontalScrollIndicator={false}
-          estimatedItemSize={20}
           keyExtractor={(item, index) =>
             item.id ? item.id.toString() : index.toString()
           }
