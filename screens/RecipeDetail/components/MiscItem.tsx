@@ -14,7 +14,7 @@ type Props = {
 export const MiscItem = (props: Props) => {
   const { figure, unit, icon } = props
 
-  const { theme } = useThemeContext()
+  const { theme, isDarkMode } = useThemeContext()
 
   return (
     <View style={[styles.main, { backgroundColor: theme.colors.primary }]}>
@@ -26,7 +26,10 @@ export const MiscItem = (props: Props) => {
         variant="titleMedium"
         style={[
           styles.textBold,
-          { color: lightColors.white, textAlign: "center" },
+          {
+            color: isDarkMode ? lightColors.dark : lightColors.white,
+            textAlign: "center",
+          },
         ]}>
         {figure}
       </Text>
@@ -35,7 +38,7 @@ export const MiscItem = (props: Props) => {
         style={[
           styles.textCapitalize,
           styles.textBold,
-          { color: lightColors.white },
+          { color: isDarkMode ? lightColors.dark : lightColors.white },
         ]}>
         {unit}
       </Text>
