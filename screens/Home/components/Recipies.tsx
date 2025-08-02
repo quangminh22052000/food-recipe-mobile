@@ -20,14 +20,11 @@ export const Recipies = () => {
     return cookingRecipeData.filter(recipe => recipe.typeName === typeName)
   }, [typeName])
 
-  const handleNavigate = (recipe: RecipeProps) => {
+  const handleNavigate = (recipeId: string) => {
     router.push({
       pathname: "/recipe-detail",
       params: {
-        id: recipe.id,
-        image: recipe.image,
-        name: recipe.name,
-        description: recipe.description,
+        id: recipeId,
       },
     })
   }

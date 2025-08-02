@@ -9,7 +9,7 @@ import { RecipeProps } from "@/libs/common/types/recipe"
 type Props = {
   index: number
   recipe: RecipeProps
-  handleNavigate: (recipe: RecipeProps) => void
+  handleNavigate: (id: string) => void
   imageAnimatedStyle?: React.ComponentProps<typeof Animated.Image>
 }
 
@@ -23,7 +23,7 @@ export const RecipeCard = (props: Props) => {
         .springify()
         .damping(12)}>
       <Pressable
-        onPress={() => handleNavigate(recipe)}
+        onPress={() => handleNavigate(recipe.id)}
         style={[
           styles.main,
           { paddingLeft: isEven ? 0 : 8, paddingRight: isEven ? 8 : 0 },

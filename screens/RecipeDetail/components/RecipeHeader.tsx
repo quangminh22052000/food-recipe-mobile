@@ -29,9 +29,10 @@ export const RecipeHeader = (props: Props) => {
     <>
       <StatusBar style="light" />
       <Animated.Image
-        source={+image}
+        source={image}
         sharedTransitionTag={`recipe-${id}`}
         style={styles.image}
+        resizeMode="cover"
       />
       <Animated.View
         entering={FadeInDown.delay(200).duration(1000).springify()}
