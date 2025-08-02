@@ -6,6 +6,7 @@ export const images = {
   huTieu: require("./hu-tieu.webp"),
   noodle: require("./noodle.webp"),
   phoBo: require("./pho-bo.webp"),
+  rice: require("./rice.webp"),
   starterMeal: require("./starter.webp"),
   viFlag: require("./vi-flag.webp"),
 }

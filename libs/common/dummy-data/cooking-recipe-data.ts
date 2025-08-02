@@ -32,7 +32,7 @@ export const cookingRecipeData: RecipeProps[] = [
   {
     id: "2",
     name: "Cơm sườn",
-    typeName: RecipeCategories.NOODLE,
+    typeName: RecipeCategories.RICE,
     image: images.comSuon,
     description: "Cơm và sườn",
     cookingTime: "45",
