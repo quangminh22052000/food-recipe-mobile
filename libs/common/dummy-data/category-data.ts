@@ -9,4 +9,10 @@ export const categories: CategoryType[] = [
     image: images.noodle,
     type: RecipeCategories.NOODLE,
   },
+  {
+    id: "C-2",
+    name: "Rice",
+    image: images.rice,
+    type: RecipeCategories.RICE,
+  },
 ]

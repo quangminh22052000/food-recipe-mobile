@@ -1,19 +1,30 @@
 import React from "react"
 
+import { useTranslation } from "react-i18next"
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
 import { useThemeContext } from "@/libs/common/design-system/theme"
 
 export const HomeIntro = () => {
+  const { t } = useTranslation("home")
+
   const { theme } = useThemeContext()
+
   return (
     <View style={styles.main}>
-      <Text variant="titleSmall">Hello, Noman!</Text>
+      <Text variant="titleSmall">
+        {t("intro.hello", { name: "Ngọc Thạnh" })}
+      </Text>
       <Text variant="displaySmall" style={styles.textBold}>
-        Make your own food, &nbsp; stay at{" "}
-        <Text style={[styles.textBold, { color: theme.colors.primary }]}>
-          home
+        {t("intro.welcome1")}, &nbsp;
+      </Text>
+      <Text variant="displaySmall" style={styles.textBold}>
+        {t("intro.welcome2")}{" "}
+        <Text
+          variant="displaySmall"
+          style={[styles.textBold, { color: theme.colors.primary }]}>
+          {t("intro.welcome3")}
         </Text>
       </Text>
     </View>
