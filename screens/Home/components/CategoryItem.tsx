@@ -23,9 +23,17 @@ export const CategoryItem = (props: Props) => {
 
   const { theme } = useThemeContext()
 
+  const handleSetActiveCategory = (category: string) => {
+    if (category === activeCategory) {
+      setActiveCategory("")
+    } else {
+      setActiveCategory(category)
+    }
+  }
+
   return (
     <TouchableOpacity
-      onPress={() => setActiveCategory(type)}
+      onPress={() => handleSetActiveCategory(type)}
       style={styles.main}>
       <View
         style={[
