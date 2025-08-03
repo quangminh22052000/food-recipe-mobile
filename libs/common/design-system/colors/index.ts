@@ -40,6 +40,7 @@ export const lightColors = {
   onSurfaceDisabled: "gray",
   backdrop: "rgba(51, 47, 55, 0.4)",
   // custom colors
+  welcomeScreenBackground: "#f8940c",
   placeholderTextColor: "#7D91BC",
   placeholderBackgroundColor: "#202939",
   tabActiveColor: "#FFFFFF",

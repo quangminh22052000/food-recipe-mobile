@@ -13,4 +13,5 @@ export const images = {
   rice: require("./rice.webp"),
   starterMeal: require("./starter.webp"),
   viFlag: require("./vi-flag.webp"),
+  welcome: require("./welcome.webp"),
 }
