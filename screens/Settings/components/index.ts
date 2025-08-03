@@ -1,2 +1,2 @@
-export * from "./SettingOptions"
+export * from "./SettingsOptions"
 export * from "./SettingsHeader"
