@@ -6,6 +6,7 @@ import { Text } from "react-native-paper"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 type Props = {
   id: string
@@ -42,9 +43,13 @@ export const CategoryItem = (props: Props) => {
             backgroundColor: isActive ? theme.colors.primary : lightColors.grey,
           },
         ]}>
-        <Image source={image} style={styles.icon} resizeMode="contain" />
+        <Image
+          source={image}
+          style={[styles.icon, { width: hp(6), height: hp(6) }]}
+          resizeMode="contain"
+        />
       </View>
-      <Text>{name}</Text>
+      <Text style={{ fontSize: hp(1.5) }}>{name}</Text>
     </TouchableOpacity>
   )
 }

@@ -32,12 +32,22 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
+        name="settings"
+        options={{
+          headerShown: false,
+          title: "Settings",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="cog" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="testing"
         options={{
           // header: () => <RootHeader />,
           title: "Testing",
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="cog" color={color} />
+            <FontAwesome size={28} name="flask" color={color} />
           ),
         }}
       />

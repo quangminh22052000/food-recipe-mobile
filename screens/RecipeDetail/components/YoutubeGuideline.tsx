@@ -7,6 +7,7 @@ import YoutubePlayer from "react-native-youtube-iframe"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { RecipeProps } from "@/libs/common/types/recipe"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 type YoutubeGuidelineProps = {
   recipeId: string
@@ -30,9 +31,7 @@ export const YoutubeGuideline = (props: YoutubeGuidelineProps) => {
     <Animated.View
       entering={FadeInDown.delay(400).duration(700).springify().damping(12)}
       style={styles.main}>
-      <Text variant="titleMedium" style={styles.textBold}>
-        Recipe Video
-      </Text>
+      <Text style={[styles.textBold, { fontSize: hp(2) }]}>Recipe Video</Text>
       <YoutubePlayer
         height={300}
         videoId={getYoutubeVideoId(recipe?.recipeVideoUrl || "") || ""}

@@ -6,6 +6,7 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { RecipeProps } from "@/libs/common/types/recipe"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 type InstructionsProps = {
   recipeId: string
@@ -22,11 +23,9 @@ export const Instructions = (props: InstructionsProps) => {
     <Animated.View
       entering={FadeInDown.delay(300).duration(700).springify().damping(12)}
       style={styles.main}>
-      <Text variant="titleMedium" style={styles.textBold}>
-        Instructions
-      </Text>
+      <Text style={[styles.textBold, { fontSize: hp(2) }]}>Instructions</Text>
       {recipe?.instructions.map((instruction, index) => (
-        <Text key={index} variant="bodyLarge">
+        <Text key={index} style={{ fontSize: hp(1.7) }}>
           {index + 1}. {instruction}
         </Text>
       ))}
