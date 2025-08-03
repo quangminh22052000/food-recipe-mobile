@@ -3,7 +3,6 @@ import React from "react"
 import { FlatList, StyleSheet, View } from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
-import { SelectSearch } from "@/libs/common/design-system/components"
 import { categories } from "@/libs/common/dummy-data"
 import { useAppStore } from "@/libs/common/store"
 
@@ -14,11 +13,11 @@ export const Categories = () => {
 
   return (
     <View style={styles.main}>
-      <SelectSearch
+      {/* <SelectSearch
         data={[{ id: "1", label: "Item 1" }]}
         onSelect={() => {}}
         placeholder="Search any recipe"
-      />
+      /> */}
       <Animated.View entering={FadeInDown.duration(500).springify()}>
         <FlatList
           data={categories}
