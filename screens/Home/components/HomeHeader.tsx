@@ -5,12 +5,13 @@ import { StyleSheet, View } from "react-native"
 import { Avatar } from "react-native-paper"
 
 import { images } from "@/libs/common/design-system/assets/images"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 export const HomeHeader = () => {
   return (
     <View style={styles.main}>
-      <Avatar.Image size={40} source={images.appLogo} />
-      <Feather name="bell" size={30} color="gray" />
+      <Avatar.Image size={hp(5)} source={images.appLogo} />
+      <Feather name="bell" size={hp(3)} color="gray" />
     </View>
   )
 }

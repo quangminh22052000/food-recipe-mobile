@@ -5,6 +5,7 @@ import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { RecipeProps } from "@/libs/common/types/recipe"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 type Props = {
   index: number
@@ -32,10 +33,14 @@ export const RecipeCard = (props: Props) => {
           // source={{ uri: item.image }}
           source={recipe.image}
           sharedTransitionTag={`recipe-${recipe.id}`}
-          style={[styles.image, { height: index % 3 === 0 ? 250 : 200 }]}
+          style={[styles.image, { height: index % 3 === 0 ? hp(35) : hp(25) }]}
           resizeMode="cover"
         />
-        <Text variant="titleMedium">{recipe.name}</Text>
+        <Text style={{ fontSize: hp(1.7), marginTop: 5 }} numberOfLines={1}>
+          {recipe.name.length > 20
+            ? `${recipe.name.slice(0, 20)}...`
+            : recipe.name}
+        </Text>
       </Pressable>
     </Animated.View>
   )

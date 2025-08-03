@@ -10,6 +10,7 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { RecipeProps } from "@/libs/common/types/recipe"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 import { MiscItem } from "./MiscItem"
 
@@ -29,25 +30,29 @@ export const Misc = (props: MiscDataProps) => {
       figure: recipe?.cookingTime || "0",
       unit: "mins",
       icon: () => (
-        <MaterialCommunityIcons name="clock-outline" size={24} color="black" />
+        <MaterialCommunityIcons
+          name="clock-outline"
+          size={hp(2.5)}
+          color="black"
+        />
       ),
     },
     {
       figure: recipe?.numberOfServing || "1",
       unit: "servings",
-      icon: () => <FontAwesome5 name="users" size={24} color="black" />,
+      icon: () => <FontAwesome5 name="users" size={hp(2.5)} color="black" />,
     },
     {
       figure: recipe?.numberOfCalories || "0",
       unit: "cal",
       icon: () => (
-        <MaterialCommunityIcons name="fire" size={24} color="black" />
+        <MaterialCommunityIcons name="fire" size={hp(2.5)} color="black" />
       ),
     },
     {
       figure: recipe?.levelOfDifficulty || "Easy",
       unit: "",
-      icon: () => <Feather name="layers" size={24} color="black" />,
+      icon: () => <Feather name="layers" size={hp(2.5)} color="black" />,
     },
   ]
 

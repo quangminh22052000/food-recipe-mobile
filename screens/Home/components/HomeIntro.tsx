@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
 import { useThemeContext } from "@/libs/common/design-system/theme"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 export const HomeIntro = () => {
   const { t } = useTranslation("home")
@@ -13,13 +14,15 @@ export const HomeIntro = () => {
 
   return (
     <View style={styles.main}>
-      <Text variant="titleSmall">
+      <Text style={{ fontSize: hp(1.7) }}>
         {t("intro.hello", { name: "Ngọc Thạnh" })}
       </Text>
-      <Text variant="displaySmall" style={styles.textBold}>
+      <Text style={[styles.textBold, { fontSize: hp(3.8) }]}>
         {t("intro.welcome1")}, &nbsp;
       </Text>
-      <Text variant="displaySmall" style={styles.textBold}>
+      <Text
+        variant="displaySmall"
+        style={[styles.textBold, { fontSize: hp(3.8) }]}>
         {t("intro.welcome2")}{" "}
         <Text
           variant="displaySmall"

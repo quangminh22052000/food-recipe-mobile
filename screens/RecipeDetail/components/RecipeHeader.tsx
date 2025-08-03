@@ -8,6 +8,7 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
+import { hp, wp } from "@/libs/common/utils/device/responsive"
 
 type Props = {
   id: string
@@ -31,17 +32,21 @@ export const RecipeHeader = (props: Props) => {
       <Animated.Image
         source={image}
         sharedTransitionTag={`recipe-${id}`}
-        style={styles.image}
+        style={[styles.image, { width: wp(100), height: hp(50) }]}
         resizeMode="cover"
       />
       <Animated.View
         entering={FadeInDown.delay(200).duration(1000).springify()}
         style={styles.overlay}>
         <TouchableOpacity onPress={handleGoBack} style={styles.buttonContainer}>
-          <Entypo name="chevron-left" size={30} color={theme.colors.primary} />
+          <Entypo
+            name="chevron-left"
+            size={hp(3)}
+            color={theme.colors.primary}
+          />
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonContainer}>
-          <AntDesign name="heart" size={30} color={theme.colors.primary} />
+          <AntDesign name="heart" size={hp(3)} color={theme.colors.primary} />
         </TouchableOpacity>
       </Animated.View>
     </>
@@ -65,8 +70,6 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   buttonContainer: {
-    width: 50,
-    height: 50,
     justifyContent: "center",
     alignItems: "center",
     padding: 10,

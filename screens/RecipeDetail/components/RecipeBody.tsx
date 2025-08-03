@@ -4,6 +4,8 @@ import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
+import { hp } from "@/libs/common/utils/device/responsive"
+
 import { Ingredients } from "./Ingredients"
 import { Instructions } from "./Instructions"
 import { Misc } from "./Misc"
@@ -22,10 +24,8 @@ export const RecipeBody = (props: Props) => {
       <Animated.View
         entering={FadeInDown.duration(700).springify().damping(12)}
         style={styles.intro}>
-        <Text variant="titleLarge" style={styles.textBold}>
-          {name}
-        </Text>
-        <Text variant="bodyLarge">{description}</Text>
+        <Text style={[styles.textBold, { fontSize: hp(3) }]}>{name}</Text>
+        <Text style={{ fontSize: hp(1.7) }}>{description}</Text>
       </Animated.View>
       <Misc recipeId={id} />
       <Ingredients recipeId={id} />

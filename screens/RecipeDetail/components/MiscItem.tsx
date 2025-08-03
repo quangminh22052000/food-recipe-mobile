@@ -5,6 +5,7 @@ import { Text } from "react-native-paper"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 type Props = {
   figure: string
@@ -19,26 +20,37 @@ export const MiscItem = (props: Props) => {
   return (
     <View style={[styles.main, { backgroundColor: theme.colors.primary }]}>
       <View
-        style={[styles.iconContainer, { backgroundColor: lightColors.white }]}>
+        style={[
+          styles.iconContainer,
+          {
+            backgroundColor: lightColors.white,
+            width: hp(5.5),
+            height: hp(5.5),
+          },
+        ]}>
         {icon()}
       </View>
       <Text
-        variant="titleMedium"
+        // variant="titleMedium"
         style={[
           styles.textBold,
           {
             color: isDarkMode ? lightColors.dark : lightColors.white,
             textAlign: "center",
+            fontSize: hp(1.5),
           },
         ]}>
         {figure}
       </Text>
       <Text
-        variant="bodySmall"
+        // variant="bodySmall"
         style={[
           styles.textCapitalize,
           styles.textBold,
-          { color: isDarkMode ? lightColors.dark : lightColors.white },
+          {
+            color: isDarkMode ? lightColors.dark : lightColors.white,
+            fontSize: hp(1.4),
+          },
         ]}>
         {unit}
       </Text>
@@ -48,8 +60,8 @@ export const MiscItem = (props: Props) => {
 
 const styles = StyleSheet.create({
   main: {
-    width: 77,
-    height: 135,
+    width: 78,
+    height: 125,
     display: "flex",
     alignItems: "center",
     gap: 5,

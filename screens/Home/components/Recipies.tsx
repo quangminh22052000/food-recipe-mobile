@@ -8,6 +8,7 @@ import { Text } from "react-native-paper"
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { useAppStore } from "@/libs/common/store"
 import { RecipeProps } from "@/libs/common/types/recipe"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 import { RecipeCard } from "./RecipeCard"
 
@@ -30,7 +31,7 @@ export const Recipies = () => {
   }
   return (
     <View style={styles.main}>
-      <Text variant="titleLarge" style={[styles.title, styles.textBold]}>
+      <Text style={[styles.title, styles.textBold, { fontSize: hp(3) }]}>
         Recipies
       </Text>
       <MasonryList

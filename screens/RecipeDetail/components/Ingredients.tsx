@@ -7,6 +7,7 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { RecipeProps } from "@/libs/common/types/recipe"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 type IngredientsProps = {
   recipeId: string
@@ -25,19 +26,24 @@ export const Ingredients = (props: IngredientsProps) => {
     <Animated.View
       entering={FadeInDown.delay(200).duration(700).springify().damping(12)}
       style={styles.main}>
-      <Text variant="titleMedium" style={styles.textBold}>
-        Ingredients
-      </Text>
+      <Text style={[styles.textBold, { fontSize: hp(2) }]}>Ingredients</Text>
       <View style={styles.ingredientContainer}>
         {recipe?.ingredients.map((ingredient, index) => (
           <View key={index} style={styles.ingredientsItem}>
             <View
-              style={[styles.dot, { backgroundColor: theme.colors.primary }]}
+              style={[
+                styles.dot,
+                {
+                  backgroundColor: theme.colors.primary,
+                  width: hp(1.2),
+                  height: hp(1.2),
+                },
+              ]}
             />
-            <Text variant="bodyLarge" style={styles.textBold}>
+            <Text style={[styles.textBold, { fontSize: hp(1.7) }]}>
               {ingredient.quantity}
             </Text>
-            <Text variant="bodyLarge">{ingredient.name}</Text>
+            <Text style={{ fontSize: hp(1.7) }}>{ingredient.name}</Text>
           </View>
         ))}
       </View>
