@@ -5,6 +5,7 @@ import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
+import { useFavoriteStore } from "@/libs/common/store/useFavoriteStore"
 import { RecipeProps } from "@/libs/common/types/recipe"
 import { wp } from "@/libs/common/utils/device/responsive"
 
@@ -12,6 +13,8 @@ import { FavoriteCard } from "./FavoriteCard"
 
 export const FavoritesList = () => {
   const router = useRouter()
+
+  const { favoriteIds } = useFavoriteStore()
 
   const handleNavigate = (recipeId: string) => {
     router.push({
@@ -21,10 +24,11 @@ export const FavoritesList = () => {
       },
     })
   }
+
   return (
     <View style={styles.container}>
       <MasonryList
-        data={cookingRecipeData}
+        data={cookingRecipeData.filter(item => favoriteIds.includes(item.id))}
         keyExtractor={(item: RecipeProps) => item.id}
         numColumns={2}
         showsVerticalScrollIndicator={false}

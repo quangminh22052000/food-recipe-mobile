@@ -8,6 +8,7 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
+import { useFavoriteStore } from "@/libs/common/store/useFavoriteStore"
 import { hp, wp } from "@/libs/common/utils/device/responsive"
 
 type Props = {
@@ -20,10 +21,22 @@ export const RecipeHeader = (props: Props) => {
 
   const { theme } = useThemeContext()
 
+  const { addFavorite, removeFavorite, isFavorite } = useFavoriteStore()
+
+  const isFav = isFavorite(id)
+
   const router = useRouter()
 
   const handleGoBack = () => {
     router.back()
+  }
+
+  const handleFavorite = () => {
+    if (isFav) {
+      removeFavorite(id)
+    } else {
+      addFavorite(id)
+    }
   }
 
   return (
@@ -45,8 +58,14 @@ export const RecipeHeader = (props: Props) => {
             color={theme.colors.primary}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonContainer}>
-          <AntDesign name="heart" size={hp(3)} color={theme.colors.primary} />
+        <TouchableOpacity
+          onPress={handleFavorite}
+          style={styles.buttonContainer}>
+          <AntDesign
+            name={isFav ? "heart" : "hearto"}
+            size={hp(3)}
+            color={theme.colors.primary}
+          />
         </TouchableOpacity>
       </Animated.View>
     </>
