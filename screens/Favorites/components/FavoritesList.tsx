@@ -3,6 +3,7 @@ import React from "react"
 import MasonryList from "@react-native-seoul/masonry-list"
 import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
+import { Text } from "react-native-paper"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { useFavoriteStore } from "@/libs/common/store/useFavoriteStore"
@@ -27,20 +28,30 @@ export const FavoritesList = () => {
 
   return (
     <View style={styles.container}>
-      <MasonryList
-        data={cookingRecipeData.filter(item => favoriteIds.includes(item.id))}
-        keyExtractor={(item: RecipeProps) => item.id}
-        numColumns={2}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item, i }) => (
-          <FavoriteCard
-            index={i}
-            favoritesRecipe={item as RecipeProps}
-            handleNavigate={handleNavigate}
-          />
-        )}
-        onEndReachedThreshold={0.1}
-      />
+      {favoriteIds.length > 0 ? (
+        <MasonryList
+          data={cookingRecipeData
+            .filter(item => favoriteIds.includes(item.id))
+            .sort(
+              (a, b) => favoriteIds.indexOf(a.id) - favoriteIds.indexOf(b.id),
+            )}
+          keyExtractor={(item: RecipeProps) => item.id}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item, i }) => (
+            <FavoriteCard
+              index={i}
+              favoritesRecipe={item as RecipeProps}
+              handleNavigate={handleNavigate}
+            />
+          )}
+          onEndReachedThreshold={0.1}
+        />
+      ) : (
+        <View style={styles.list}>
+          <Text>No favorite recipes yet</Text>
+        </View>
+      )}
     </View>
   )
 }

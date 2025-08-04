@@ -23,7 +23,8 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           return route.name
         })()
 
-        if (["_sitemap", "+not-found"].includes(route.name)) return null
+        if (["testing", "_sitemap", "+not-found"].includes(route.name))
+          return null
 
         const isFocused = state.index === index
 
