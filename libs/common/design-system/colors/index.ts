@@ -86,6 +86,9 @@ export const lightColors = {
   lightModeBackground: "#F5F5F5",
   headerLightBackground: "#FFFFFF",
   tabBarLightBackground: "#FFFFFF",
+  levelEasyColor: "#00B33C",
+  levelMediumColor: "#FBBF24",
+  levelHardColor: "#FF0000",
 }
 
 export const darkColors = {
