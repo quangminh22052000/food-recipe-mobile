@@ -1,4 +1,5 @@
 import { images } from "../design-system/assets/images"
+import { LevelOfDifficulties } from "../enums"
 import { RecipeCategories } from "../enums/recipeCategories"
 import { RecipeProps } from "../types/recipe"
 
@@ -12,7 +13,7 @@ export const cookingRecipeData: RecipeProps[] = [
     cookingTime: "35",
     numberOfServing: "2",
     numberOfCalories: "600",
-    levelOfDifficulty: "Dễ",
+    levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Bún", quantity: "200g" },
       { name: "Bò", quantity: "150g" },
@@ -38,7 +39,7 @@ export const cookingRecipeData: RecipeProps[] = [
     cookingTime: "45",
     numberOfServing: "3",
     numberOfCalories: "700",
-    levelOfDifficulty: "Trung bình",
+    levelOfDifficulty: LevelOfDifficulties.MEDIUM,
     ingredients: [
       { name: "Cơm", quantity: "300g" },
       { name: "Sườn heo", quantity: "250g" },
@@ -64,7 +65,7 @@ export const cookingRecipeData: RecipeProps[] = [
     cookingTime: "30",
     numberOfServing: "2",
     numberOfCalories: "500",
-    levelOfDifficulty: "Dễ",
+    levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Hủ tiếu", quantity: "200g" },
       { name: "Thịt heo", quantity: "150g" },
@@ -90,7 +91,7 @@ export const cookingRecipeData: RecipeProps[] = [
     cookingTime: "60",
     numberOfServing: "4",
     numberOfCalories: "800",
-    levelOfDifficulty: "Khó",
+    levelOfDifficulty: LevelOfDifficulties.HARD,
     ingredients: [
       { name: "Phở", quantity: "300g" },
       { name: "Bò", quantity: "200g" },
@@ -116,7 +117,7 @@ export const cookingRecipeData: RecipeProps[] = [
     cookingTime: "50",
     numberOfServing: "3",
     numberOfCalories: "650",
-    levelOfDifficulty: "Trung bình",
+    levelOfDifficulty: LevelOfDifficulties.MEDIUM,
     ingredients: [
       { name: "Mì Quảng", quantity: "250g" },
       { name: "Tôm", quantity: "150g" },
@@ -143,7 +144,7 @@ export const cookingRecipeData: RecipeProps[] = [
     cookingTime: "40",
     numberOfServing: "2",
     numberOfCalories: "550",
-    levelOfDifficulty: "Dễ",
+    levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Cơm", quantity: "200g" },
       { name: "Gà", quantity: "200g" },
@@ -169,7 +170,7 @@ export const cookingRecipeData: RecipeProps[] = [
     cookingTime: "40",
     numberOfServing: "2",
     numberOfCalories: "550",
-    levelOfDifficulty: "Dễ",
+    levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Cơm", quantity: "200g" },
       { name: "Tôm", quantity: "100g" },
@@ -195,7 +196,7 @@ export const cookingRecipeData: RecipeProps[] = [
     cookingTime: "30",
     numberOfServing: "2",
     numberOfCalories: "600",
-    levelOfDifficulty: "Dễ",
+    levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Cơm", quantity: "200g" },
       { name: "Rau củ", quantity: "150g" },

@@ -1,9 +1,12 @@
 import React from "react"
 
-import { Pressable, StyleSheet } from "react-native"
+import { MaterialCommunityIcons } from "@expo/vector-icons"
+import { Pressable, StyleSheet, View } from "react-native"
 import { Text, useTheme } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
+import { lightColors } from "@/libs/common/design-system/colors"
+import { LevelOfDifficulties } from "@/libs/common/enums"
 import { RecipeProps } from "@/libs/common/types/recipe"
 import { hp, wp } from "@/libs/common/utils/device/responsive"
 
@@ -17,6 +20,70 @@ export const FavoriteCard = (props: Props) => {
   const { index, favoritesRecipe, handleNavigate } = props
 
   const theme = useTheme()
+
+  const renderLevelOfDifficulty = () => {
+    switch (favoritesRecipe.levelOfDifficulty) {
+      case LevelOfDifficulties.EASY:
+        return (
+          <View style={styles.recipeInfoContainer}>
+            <Text
+              style={[styles.textBold, { color: lightColors.levelEasyColor }]}>
+              {favoritesRecipe.levelOfDifficulty}
+            </Text>
+            <Text>-</Text>
+            <View style={styles.cookingContainer}>
+              <MaterialCommunityIcons
+                name="clock-outline"
+                size={hp(2.5)}
+                color={theme.colors.onBackground}
+              />
+              <Text>{favoritesRecipe.cookingTime}</Text>
+            </View>
+          </View>
+        )
+      case LevelOfDifficulties.MEDIUM:
+        return (
+          <View style={styles.recipeInfoContainer}>
+            <Text
+              style={[
+                styles.textBold,
+                { color: lightColors.levelMediumColor },
+              ]}>
+              {favoritesRecipe.levelOfDifficulty}
+            </Text>
+            <Text>-</Text>
+            <View style={styles.cookingContainer}>
+              <MaterialCommunityIcons
+                name="clock-outline"
+                size={hp(2.5)}
+                color={theme.colors.onBackground}
+              />
+              <Text>{favoritesRecipe.cookingTime}</Text>
+            </View>
+          </View>
+        )
+      case LevelOfDifficulties.HARD:
+        return (
+          <View style={styles.recipeInfoContainer}>
+            <Text
+              style={[styles.textBold, { color: lightColors.levelHardColor }]}>
+              {favoritesRecipe.levelOfDifficulty}
+            </Text>
+            <Text>-</Text>
+            <View style={styles.cookingContainer}>
+              <MaterialCommunityIcons
+                name="clock-outline"
+                size={hp(2.5)}
+                color={theme.colors.onBackground}
+              />
+              <Text>{favoritesRecipe.cookingTime}</Text>
+            </View>
+          </View>
+        )
+      default:
+        return null
+    }
+  }
 
   return (
     <Animated.View
@@ -44,7 +111,7 @@ export const FavoriteCard = (props: Props) => {
           numberOfLines={1}>
           {favoritesRecipe.name}
         </Text>
-        <Text>{favoritesRecipe.levelOfDifficulty}</Text>
+        {renderLevelOfDifficulty()}
       </Pressable>
     </Animated.View>
   )
@@ -71,6 +138,16 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: hp(1.8),
     marginBottom: 6,
+  },
+  recipeInfoContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  cookingContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
   },
   textBold: {
     fontWeight: "bold",
