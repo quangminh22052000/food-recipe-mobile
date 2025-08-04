@@ -2,9 +2,11 @@ import React from "react"
 
 import MasonryList from "@react-native-seoul/masonry-list"
 import { useRouter } from "expo-router"
+import LottieView from "lottie-react-native"
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
+import { animations } from "@/libs/common/design-system/assets/animations"
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { useFavoriteStore } from "@/libs/common/store/useFavoriteStore"
 import { RecipeProps } from "@/libs/common/types/recipe"
@@ -48,7 +50,13 @@ export const FavoritesList = () => {
           onEndReachedThreshold={0.1}
         />
       ) : (
-        <View style={styles.list}>
+        <View style={styles.noDataContainer}>
+          <LottieView
+            source={animations.noData}
+            autoPlay
+            loop={false} // nếu muốn chạy 1 lần thôi
+            style={styles.lottie}
+          />
           <Text>No favorite recipes yet</Text>
         </View>
       )}
@@ -64,5 +72,14 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: wp(2.5),
+  },
+  noDataContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  lottie: {
+    width: 200,
+    height: 200,
   },
 })

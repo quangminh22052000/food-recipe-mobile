@@ -37,7 +37,7 @@ export const FavoriteCard = (props: Props) => {
                 size={hp(2.5)}
                 color={theme.colors.onBackground}
               />
-              <Text>{favoritesRecipe.cookingTime}</Text>
+              <Text>{`${favoritesRecipe.cookingTime} mins`}</Text>
             </View>
           </View>
         )
@@ -58,7 +58,7 @@ export const FavoriteCard = (props: Props) => {
                 size={hp(2.5)}
                 color={theme.colors.onBackground}
               />
-              <Text>{favoritesRecipe.cookingTime}</Text>
+              <Text>{`${favoritesRecipe.cookingTime} mins`}</Text>
             </View>
           </View>
         )
@@ -76,7 +76,7 @@ export const FavoriteCard = (props: Props) => {
                 size={hp(2.5)}
                 color={theme.colors.onBackground}
               />
-              <Text>{favoritesRecipe.cookingTime}</Text>
+              <Text>{`${favoritesRecipe.cookingTime} mins`}</Text>
             </View>
           </View>
         )
