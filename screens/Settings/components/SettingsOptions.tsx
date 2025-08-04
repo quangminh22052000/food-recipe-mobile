@@ -152,7 +152,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     paddingVertical: 16,
-    paddingBottom: 100,
   },
   section: {
     paddingHorizontal: 15,

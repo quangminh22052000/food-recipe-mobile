@@ -32,6 +32,16 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
+        name="favorites"
+        options={{
+          headerShown: false,
+          title: "Favorites",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="heart" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           headerShown: false,
