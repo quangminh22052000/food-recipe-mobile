@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 export const images = {
   appLogo: require("./app-logo.png"),
   bunBo: require("./bun-bo.webp"),

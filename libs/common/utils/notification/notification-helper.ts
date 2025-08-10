@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { showMessage } from "react-native-flash-message"
 
 export const errorHandling = (error: any, location: string) => {
