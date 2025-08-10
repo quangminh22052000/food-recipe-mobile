@@ -1,0 +1,49 @@
+name: Lint & Prettier Auto Fix
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint-fix:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Cho phép commit lại code
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Để commit lại được
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run ESLint fix
+        run: yarn lint:fix
+
+      - name: Run Prettier fix
+        run: yarn format
+
+      - name: Commit changes if any
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -am "chore: auto-fix lint & format"
+            git push
+          fi
