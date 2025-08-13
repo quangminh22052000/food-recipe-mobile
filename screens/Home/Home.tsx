@@ -7,6 +7,8 @@ import { ScreenWrapper } from "@/libs/common/design-system/components"
 import { Categories, HomeHeader, HomeIntro, Recipies } from "./components"
 
 export const Home = () => {
+  // console.log("🚀 ~ Home", process.env.EXPO_PUBLIC_AUTH_API_URL)
+  // console.log("🚀 ~ Home", process.env.APP_ENV)
   return (
     <ScreenWrapper contentContainerStyle={styles.container}>
       <HomeHeader />

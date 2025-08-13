@@ -7,21 +7,18 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env": {
-        "EXPO_PUBLIC_AUTH_API_URL": "http://localhost:3000"
-      }
+      "environment": "development",
+      "channel": "development"
     },
     "preview": {
       "distribution": "internal",
-      "env": {
-        "EXPO_PUBLIC_AUTH_API_URL": "http://localhost:3000"
-      }
+      "environment": "preview",
+      "channel": "preview"
     },
     "production": {
       "autoIncrement": true,
-      "env": {
-        "EXPO_PUBLIC_AUTH_API_URL": "http://localhost:3000"
-      }
+      "environment": "production",
+      "channel": "production"
     }
   },
   "submit": {
