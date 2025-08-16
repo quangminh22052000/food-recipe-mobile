@@ -5,6 +5,7 @@ Hướng dẫn sử dụng unit testing trong project Food Recipe Mobile.
 ## 🚀 Setup
 
 Project đã được cấu hình sẵn với:
+
 - **Jest**: Testing framework
 - **ts-jest**: TypeScript support
 - **@testing-library/react-native**: React Native testing utilities
@@ -53,15 +54,15 @@ yarn test __tests__/basic.test.ts
 ### 1. Test cơ bản
 
 ```typescript
-describe('MyFunction', () => {
-  it('should work correctly', () => {
-    const result = myFunction('input')
-    expect(result).toBe('expected output')
+describe("MyFunction", () => {
+  it("should work correctly", () => {
+    const result = myFunction("input")
+    expect(result).toBe("expected output")
   })
 
-  it('should handle edge cases', () => {
-    const result = myFunction('')
-    expect(result).toBe('')
+  it("should handle edge cases", () => {
+    const result = myFunction("")
+    expect(result).toBe("")
   })
 })
 ```
@@ -91,13 +92,13 @@ describe('MyComponent', () => {
 ### 3. Test cho Services
 
 ```typescript
-import { myService } from '../myService'
+import { myService } from "../myService"
 
 // Mock dependencies
-jest.mock('axios')
+jest.mock("axios")
 
-describe('myService', () => {
-  it('should call API correctly', async () => {
+describe("myService", () => {
+  it("should call API correctly", async () => {
     // Setup mock
     // Call service
     // Assert results
@@ -127,7 +128,7 @@ describe("Home Screen", () => {
       hasCategories: true,
       hasRecipes: true,
     }
-    
+
     expect(layout.hasHeader).toBe(true)
     expect(layout.hasIntro).toBe(true)
   })
@@ -137,17 +138,17 @@ describe("Home Screen", () => {
 ### 5. Test cho Stores (Zustand)
 
 ```typescript
-import { renderHook, act } from '@testing-library/react-native'
-import { useMyStore } from '../useMyStore'
+import { renderHook, act } from "@testing-library/react-native"
+import { useMyStore } from "../useMyStore"
 
-describe('useMyStore', () => {
-  it('should update state correctly', () => {
+describe("useMyStore", () => {
+  it("should update state correctly", () => {
     const { result } = renderHook(() => useMyStore())
-    
+
     act(() => {
       result.current.updateState(newValue)
     })
-    
+
     expect(result.current.state).toBe(newValue)
   })
 })
@@ -156,30 +157,34 @@ describe('useMyStore', () => {
 ## 🎯 Best Practices
 
 ### 1. Naming Convention
+
 - File test: `ComponentName.test.tsx` hoặc `ComponentName.spec.tsx`
 - Test suite: Mô tả component/function được test
 - Test case: Mô tả hành vi cụ thể
 
 ### 2. Test Structure (AAA Pattern)
+
 ```typescript
-it('should do something', () => {
+it("should do something", () => {
   // Arrange - Chuẩn bị dữ liệu
-  const mockData = { id: 1, name: 'Test' }
-  
+  const mockData = { id: 1, name: "Test" }
+
   // Act - Thực hiện hành động
   const result = myFunction(mockData)
-  
+
   // Assert - Kiểm tra kết quả
   expect(result).toBe(expectedValue)
 })
 ```
 
 ### 3. Mocking
+
 - Mock external dependencies (API, navigation, etc.)
 - Sử dụng `jest.mock()` cho modules
 - Sử dụng `jest.fn()` cho functions
 
 ### 4. Test Data
+
 - Tạo mock data realistic
 - Sử dụng factory functions cho test data
 - Tránh hardcode values
@@ -187,6 +192,7 @@ it('should do something', () => {
 ## 📊 Coverage
 
 Mục tiêu coverage tối thiểu:
+
 - Statements: 80%
 - Branches: 70%
 - Functions: 80%
@@ -195,6 +201,7 @@ Mục tiêu coverage tối thiểu:
 ## 🔧 Cấu hình Jest
 
 File `jest.config.cjs` đã được cấu hình với:
+
 - TypeScript support
 - Module alias resolution (`@/` -> `<rootDir>/`)
 - Test environment cho Node.js
@@ -232,6 +239,7 @@ yarn test --runInBand --detectOpenHandles
 ## 🎉 Kết quả
 
 Với setup này, bạn có thể:
+
 - ✅ Chạy unit tests cho JavaScript và TypeScript
 - ✅ Test utility functions
 - ✅ Test API services
@@ -239,6 +247,7 @@ Với setup này, bạn có thể:
 - ✅ Run tests in watch mode
 
 ### 📊 Test Results
+
 ```
 Test Suites: 8 passed, 8 total
 Tests:       44 passed, 44 total
