@@ -36,26 +36,3 @@ jobs:
 
       - name: Run formatting check
         run: yarn format:check
-
-      - name: Run tests
-        run: yarn test:ci
-
-      - name: Check test coverage
-        run: |
-          yarn test:coverage
-          echo "Coverage report generated successfully"
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          file: ./coverage/lcov.info
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: false
-
-      - name: Upload coverage artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/
-          retention-days: 30

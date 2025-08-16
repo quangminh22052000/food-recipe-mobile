@@ -72,25 +72,11 @@ __tests__/
 
 ## 🏗️ CI/CD
 
-GitHub Actions workflows for automated testing and quality checks:
+GitHub Actions workflows for automated code quality checks:
 
-- **Unit Tests**: Runs tests on Node.js 18 & 20
-- **Quality Checks**: Linting, formatting, and coverage
+- **Lint & Format**: Automated linting and formatting with auto-fix
+- **Quality Checks**: Comprehensive quality validation
 - **Auto-fix**: Automatic lint and format fixes
-- **Coverage Upload**: Automatic coverage reports to Codecov
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**@babel/runtime Error**: If you encounter `@babel/runtime/helpers/interopRequireDefault` errors:
-```bash
-# Install missing dependencies
-yarn add @babel/runtime @babel/core @babel/helpers
-
-# Clear cache and restart
-npx expo start --clear
-```
 
 ## 📱 Getting Started
 

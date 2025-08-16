@@ -1,80 +1,133 @@
 # GitHub Workflows
 
-Thư mục này chứa các GitHub Actions workflows cho project Food Recipe Mobile.
+This repository contains GitHub Actions workflows for automated code quality checks and CI/CD processes.
 
-## 📁 Các Workflows
+## 📋 Available Workflows
 
-### 1. **test.yml** - Unit Tests
-- **Mục đích**: Chạy unit tests
-- **Trigger**: Push/PR vào main/develop
-- **Node.js**: 18, 20
-- **Actions**:
-  - Install dependencies
-  - Run tests (`yarn test:ci`)
-  - Upload coverage lên Codecov
-  - Lưu coverage artifacts
+### 1. **Lint & Format** (`.github/workflows/ci.yml`)
 
-### 2. **quality.yml** - Quality Checks
-- **Mục đích**: Kiểm tra chất lượng code
-- **Trigger**: Push/PR vào main/develop
-- **Node.js**: 20
-- **Actions**:
-  - Linting (ESLint)
-  - Formatting check (Prettier)
-  - Unit tests
-  - Coverage reports
-  - Upload artifacts
+**Purpose**: Automated linting and formatting with auto-fix capabilities.
 
-### 3. **ci.yml** - Lint & Format Auto Fix
-- **Mục đích**: Tự động fix lint và format
-- **Trigger**: Push/PR vào main/develop
-- **Actions**:
-  - ESLint auto-fix
-  - Prettier auto-format
-  - Commit changes nếu cần
+**Triggers**:
+- Push to `main` or `develop` branches
+- Pull requests to `main` or `develop` branches
 
-## 🚀 Cách sử dụng
+**Features**:
+- ✅ **ESLint auto-fix**: Automatically fixes linting errors
+- ✅ **Prettier auto-format**: Automatically formats code
+- ✅ **Auto-commit**: Commits fixes if any changes are made
+- ✅ **Lockfile management**: Updates yarn.lock if needed
+- ✅ **Pull request integration**: Can fix PRs automatically
 
-### Chạy thủ công
-```bash
-# Trong GitHub repository
-Actions > Unit Tests > Run workflow
-```
+**Jobs**:
+- `lint-fix`: Runs ESLint and Prettier fixes, commits changes
 
-### Xem kết quả
-- **Actions tab**: Xem logs và kết quả
-- **Codecov**: Xem coverage reports
-- **Artifacts**: Tải coverage reports
+---
 
-## 📊 Coverage Reports
+### 2. **Quality Checks** (`.github/workflows/quality.yml`)
 
-Workflows sẽ tạo:
-- `lcov.info` - Coverage data
-- `clover.xml` - XML format
-- `coverage-final.json` - JSON format
-- `lcov-report/` - HTML reports
+**Purpose**: Comprehensive quality validation without auto-fix.
 
-## 🔧 Cấu hình
+**Triggers**:
+- Push to `main` or `develop` branches
+- Pull requests to `main` or `develop` branches
+- Manual trigger (`workflow_dispatch`)
 
-### Environment Variables
-- Không cần environment variables đặc biệt
-- Sử dụng `yarn install --frozen-lockfile` để đảm bảo consistency
+**Features**:
+- ✅ **Lint check**: Verifies code follows ESLint rules
+- ✅ **Format check**: Verifies code follows Prettier formatting
+- ✅ **Quality gates**: Ensures code quality standards
+- ✅ **Manual execution**: Can be triggered manually
 
-### Cache
-- Node.js modules được cache
-- Yarn cache được enable
+**Jobs**:
+- `quality`: Runs lint and format checks (read-only)
 
-### Matrix Strategy
-- Test trên nhiều phiên bản Node.js
-- Đảm bảo compatibility
+---
+
+## 🚀 Workflow Execution
+
+### Automatic Execution
+When you push code or create a pull request:
+1. **Lint & Format** workflow runs automatically
+2. **Quality Checks** workflow runs automatically
+3. Any linting/formatting issues are automatically fixed and committed
+
+### Manual Execution
+You can manually trigger the Quality Checks workflow:
+1. Go to the "Actions" tab in GitHub
+2. Select "Quality Checks" workflow
+3. Click "Run workflow"
+
+## 📊 Workflow Comparison
+
+| Feature | Lint & Format | Quality Checks |
+|---------|---------------|----------------|
+| **Purpose** | Auto-fix | Quality validation |
+| **Auto-fix** | ✅ | ❌ |
+| **Auto-commit** | ✅ | ❌ |
+| **Manual trigger** | ❌ | ✅ |
+| **Node versions** | 20 | 20 |
+| **Lockfile management** | ✅ | ❌ |
+
+## 🔧 Configuration
+
+### ESLint Configuration
+- Uses project's `.eslintrc.js` configuration
+- Automatically fixes fixable issues
+- Reports non-fixable issues
+
+### Prettier Configuration
+- Uses project's `.prettierrc` configuration
+- Automatically formats code
+- Ensures consistent code style
+
+### Node.js Setup
+- Uses Node.js 20 for all workflows
+- Caches yarn dependencies for faster execution
+- Uses `--frozen-lockfile` for consistent installations
+
+## 📝 Best Practices
+
+### For Developers
+1. **Run locally first**: Always run `yarn lint` and `yarn format:check` locally before pushing
+2. **Review auto-fixes**: Check what the workflow auto-fixed
+3. **Follow standards**: Adhere to ESLint and Prettier rules
+
+### For Maintainers
+1. **Monitor workflow runs**: Check Actions tab regularly
+2. **Review auto-commits**: Ensure auto-fixes are appropriate
+3. **Update configurations**: Keep ESLint and Prettier configs up to date
 
 ## 🐛 Troubleshooting
 
-### Lỗi thường gặp:
-1. **Duplicate job names**: Đảm bảo mỗi job có tên duy nhất
-2. **Deprecated actions**: Sử dụng `actions/upload-artifact@v4` thay vì v3
-3. **Lockfile mismatch**: Chạy `yarn install` để cập nhật lockfile
+### Common Issues
 
-### Scripts cần thiết:
-- `test:ci`: Chạy tests trong CI environment
-- `test:coverage`: Tạo coverage reports
+**Workflow fails on linting**:
+- Check ESLint configuration
+- Run `yarn lint:fix` locally
+- Review error messages in workflow logs
+
+**Workflow fails on formatting**:
+- Check Prettier configuration
+- Run `yarn format` locally
+- Review formatting differences
+
+**Auto-commit not working**:
+- Check repository permissions
+- Ensure workflow has write access
+- Review commit message format
+
+## 📚 Related Documentation
+
+- [ESLint Documentation](https://eslint.org/)
+- [Prettier Documentation](https://prettier.io/)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [Project Testing Guide](../TESTING.md)
+
+## 🤝 Contributing
+
+When contributing to this project:
+1. Ensure your code passes linting and formatting checks
+2. The workflows will automatically fix minor issues
+3. Review any auto-fixes before merging
+4. Follow the established code quality standards
