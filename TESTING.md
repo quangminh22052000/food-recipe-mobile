@@ -207,6 +207,35 @@ File `jest.config.cjs` đã được cấu hình với:
 - Test environment cho Node.js
 - Transform patterns cho React Native
 
+## 🚀 GitHub Workflows
+
+### 1. **Unit Tests** (`.github/workflows/test.yml`)
+Chạy unit tests trên nhiều phiên bản Node.js:
+- Node.js 18 và 20
+- Upload coverage reports lên Codecov
+- Lưu coverage artifacts
+
+### 2. **Quality Checks** (`.github/workflows/quality.yml`)
+Kiểm tra chất lượng code:
+- Linting (ESLint)
+- Formatting (Prettier)
+- Unit tests
+- Coverage reports
+
+### 3. **Lint & Format** (`.github/workflows/ci.yml`)
+Tự động fix lint và format:
+- ESLint auto-fix
+- Prettier auto-format
+- Commit changes nếu cần
+
+### 📊 Coverage Integration
+
+Workflows sẽ:
+- ✅ Chạy tests trên mỗi PR
+- ✅ Upload coverage lên Codecov
+- ✅ Lưu coverage artifacts
+- ✅ Kiểm tra quality gates
+
 ## 🐛 Troubleshooting
 
 ### Common Issues
