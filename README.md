@@ -16,11 +16,13 @@ A React Native mobile application for food recipes built with Expo.
 This project includes comprehensive unit testing setup:
 
 ### Test Coverage
+
 - **44 tests** across **8 test suites**
 - **100% coverage** for tested files
 - Tests for utilities, components, and screens
 
 ### Running Tests
+
 ```bash
 # Run all tests
 yarn test
@@ -36,6 +38,7 @@ yarn test:ci
 ```
 
 ### Coverage Reports
+
 The `coverage/` folder contains detailed test coverage reports:
 
 ```
@@ -53,6 +56,7 @@ coverage/
 **Current Coverage: 100%** (Statements, Branches, Functions, Lines)
 
 ### Test Structure
+
 ```
 __tests__/
 ├── basic.test.ts              # Basic Jest configuration tests
@@ -81,11 +85,13 @@ GitHub Actions workflows for automated code quality checks:
 ## 📱 Getting Started
 
 ### Prerequisites
+
 - Node.js 18 or higher
 - Yarn package manager
 - Expo CLI
 
 ### Installation
+
 ```bash
 # Install dependencies
 yarn install

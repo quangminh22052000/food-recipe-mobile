@@ -1,4 +1,5 @@
 @@ -1,258 +1,287 @@
+
 # Testing Guide - Food Recipe Mobile
 
 Hướng dẫn sử dụng unit testing trong project Food Recipe Mobile.
@@ -211,20 +212,26 @@ File `jest.config.cjs` đã được cấu hình với:
 ## 🚀 GitHub Workflows
 
 ### 1. **Unit Tests** (`.github/workflows/test.yml`)
+
 Chạy unit tests trên nhiều phiên bản Node.js:
+
 - Node.js 18 và 20
 - Upload coverage reports lên Codecov
 - Lưu coverage artifacts
 
 ### 2. **Quality Checks** (`.github/workflows/quality.yml`)
+
 Kiểm tra chất lượng code:
+
 - Linting (ESLint)
 - Formatting (Prettier)
 - Unit tests
 - Coverage reports
 
 ### 3. **Lint & Format** (`.github/workflows/ci.yml`)
+
 Tự động fix lint và format:
+
 - ESLint auto-fix
 - Prettier auto-format
 - Commit changes nếu cần
@@ -232,6 +239,7 @@ Tự động fix lint và format:
 ### 📊 Coverage Integration
 
 Workflows sẽ:
+
 - ✅ Chạy tests trên mỗi PR
 - ✅ Upload coverage lên Codecov
 - ✅ Lưu coverage artifacts
