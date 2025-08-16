@@ -12,7 +12,11 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --watchAll=false"
   },
   "type": "module",
   "dependencies": {
@@ -73,6 +77,9 @@
     "@babel/core": "^7.25.2",
     "@eslint/js": "^9.32.0",
     "@react-native/eslint-plugin": "^0.80.2",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.2.2",
+    "@types/jest": "^30.0.0",
     "@types/react": "~19.0.10",
     "@types/react-native-vector-icons": "^6.4.18",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
@@ -86,7 +93,11 @@
     "eslint-plugin-react-native": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "jest": "^30.0.5",
+    "jest-expo": "^53.0.9",
     "prettier": "^3.6.2",
+    "react-test-renderer": "19.0.0",
+    "ts-jest": "^29.4.1",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.38.0"
   },
