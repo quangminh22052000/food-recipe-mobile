@@ -1,50 +1,152 @@
-# Welcome to your Expo app 👋
+# Food Recipe Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native mobile application for food recipes built with Expo.
 
-## Get started
+## 🚀 Features
 
-1. Install dependencies
+- Browse food recipes
+- Search and filter recipes
+- Recipe details with ingredients and instructions
+- Favorites management
+- Multi-language support (English/Vietnamese)
+- Modern UI with React Native Paper
 
-   ```bash
-   npm install
-   ```
+## 🧪 Testing
 
-2. Start the app
+This project includes comprehensive unit testing setup:
 
-   ```bash
-   npx expo start
-   ```
+### Test Coverage
+- **44 tests** across **8 test suites**
+- **100% coverage** for tested files
+- Tests for utilities, components, and screens
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### Running Tests
 ```bash
-npm run reset-project
+# Run all tests
+yarn test
+
+# Run tests in watch mode
+yarn test:watch
+
+# Run tests with coverage
+yarn test:coverage
+
+# Run tests for CI
+yarn test:ci
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Coverage Reports
+The `coverage/` folder contains detailed test coverage reports:
 
-## Learn more
+```
+coverage/
+├── lcov.info                  # Main coverage report (LCOV format)
+├── clover.xml                 # XML coverage report (for CI tools)
+├── coverage-final.json        # JSON coverage data
+└── lcov-report/              # HTML coverage report
+    ├── index.html            # Main coverage dashboard
+    ├── currency.ts.html      # Coverage for currency utilities
+    ├── datetime.ts.html      # Coverage for datetime utilities
+    └── index.ts.html         # Coverage for format index
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+**Current Coverage: 100%** (Statements, Branches, Functions, Lines)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Test Structure
+```
+__tests__/
+├── basic.test.ts              # Basic Jest configuration tests
+├── simple.test.ts             # Simple TypeScript tests
+├── simple.test.js             # Simple JavaScript tests
+├── services/
+│   └── auth.test.ts          # API service tests
+├── utils/
+│   └── format.test.ts        # Utility function tests
+└── screens/                   # Screen component tests
+    ├── Home.test.ts           # Home screen tests
+    ├── HomeHeader.test.ts     # HomeHeader component tests
+    ├── HomeIntro.test.ts      # HomeIntro component tests
+    ├── Categories.test.ts     # Categories component tests
+    └── Recipies.test.ts       # Recipies component tests
+```
 
-## Join the community
+## 🏗️ CI/CD
 
-Join our community of developers creating universal apps.
+GitHub Actions workflows for automated testing and quality checks:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Unit Tests**: Runs tests on Node.js 18 & 20
+- **Quality Checks**: Linting, formatting, and coverage
+- **Auto-fix**: Automatic lint and format fixes
+- **Coverage Upload**: Automatic coverage reports to Codecov
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**@babel/runtime Error**: If you encounter `@babel/runtime/helpers/interopRequireDefault` errors:
+```bash
+# Install missing dependencies
+yarn add @babel/runtime @babel/core @babel/helpers
+
+# Clear cache and restart
+npx expo start --clear
+```
+
+## 📱 Getting Started
+
+### Prerequisites
+- Node.js 18 or higher
+- Yarn package manager
+- Expo CLI
+
+### Installation
+```bash
+# Install dependencies
+yarn install
+
+# Start development server
+yarn start
+
+# Run on iOS
+yarn ios
+
+# Run on Android
+yarn android
+```
+
+## 🛠️ Tech Stack
+
+- **Framework**: React Native with Expo
+- **Language**: TypeScript
+- **UI Library**: React Native Paper
+- **State Management**: Zustand
+- **Navigation**: Expo Router
+- **Testing**: Jest + React Native Testing Library
+- **Linting**: ESLint + Prettier
+
+## 📊 Project Structure
+
+```
+food-recipe-mobile/
+├── app/                      # Expo Router pages
+├── assets/                   # Static assets
+├── libs/                     # Shared libraries
+│   ├── auth/                # Authentication
+│   └── common/              # Common utilities
+├── screens/                  # Screen components
+├── __tests__/               # Unit tests
+├── coverage/                # Test coverage reports
+└── .github/workflows/       # CI/CD workflows
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Write tests for new features
+4. Ensure all tests pass
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.

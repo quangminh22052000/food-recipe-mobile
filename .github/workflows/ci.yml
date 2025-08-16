@@ -17,12 +17,6 @@ jobs:
       matrix:
         node-version: [18, 20]
 
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18, 20]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

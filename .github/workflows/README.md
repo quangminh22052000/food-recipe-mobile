@@ -67,3 +67,14 @@ Workflows sẽ tạo:
 ### Matrix Strategy
 - Test trên nhiều phiên bản Node.js
 - Đảm bảo compatibility
+
+## 🐛 Troubleshooting
+
+### Lỗi thường gặp:
+1. **Duplicate job names**: Đảm bảo mỗi job có tên duy nhất
+2. **Deprecated actions**: Sử dụng `actions/upload-artifact@v4` thay vì v3
+3. **Lockfile mismatch**: Chạy `yarn install` để cập nhật lockfile
+
+### Scripts cần thiết:
+- `test:ci`: Chạy tests trong CI environment
+- `test:coverage`: Tạo coverage reports

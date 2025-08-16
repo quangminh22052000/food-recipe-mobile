@@ -20,6 +20,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@babel/helpers": "^7.28.3",
+    "@babel/runtime": "^7.28.3",
     "@expo/vector-icons": "^14.1.0",
     "@lottiefiles/dotlottie-react": "^0.14.4",
     "@react-native-async-storage/async-storage": "2.1.2",
@@ -74,7 +76,7 @@
     "zustand": "^5.0.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
+    "@babel/core": "^7.28.3",
     "@eslint/js": "^9.32.0",
     "@react-native/eslint-plugin": "^0.80.2",
     "@testing-library/jest-native": "^5.4.3",
