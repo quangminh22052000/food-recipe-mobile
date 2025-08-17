@@ -1,10 +1,6 @@
-name: Lint & Prettier Auto Fix
+name: Lint & Format Auto Fix
 
 on:
-  push:
-    branches:
-      - main
-      - develop
   pull_request:
     branches:
       - main
@@ -30,13 +26,13 @@ jobs:
           node-version: 20
           cache: yarn
 
-      # Thử cài với frozen-lockfile
+      # Cài với frozen-lockfile
       - name: Install dependencies (frozen)
         id: yarn_install
         run: |
           yarn install --frozen-lockfile || echo "YARN_LOCK_MISMATCH=true" >> $GITHUB_ENV
 
-      # Nếu lockfile mismatch thì update & commit lại
+      # Nếu lockfile mismatch thì update & commit lại vào branch PR
       - name: Update lockfile if needed
         if: env.YARN_LOCK_MISMATCH == 'true'
         run: |
@@ -61,4 +57,3 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -am "chore: auto-fix lint & format"
             git push
-          fi
