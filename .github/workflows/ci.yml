@@ -1,38 +1,64 @@
 name: Lint & Prettier Auto Fix
 
 on:
-  pull_request:
   push:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
 
 jobs:
   lint-fix:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # cần để có quyền push lại
+          fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: yarn
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Run ESLint & Prettier auto-fix
+      # Thử cài với frozen-lockfile
+      - name: Install dependencies (frozen)
+        id: yarn_install
         run: |
-          yarn lint:fix
-          yarn format
+          yarn install --frozen-lockfile || echo "YARN_LOCK_MISMATCH=true" >> $GITHUB_ENV
 
-      - name: Commit & Push fixes
+      # Nếu lockfile mismatch thì update & commit lại
+      - name: Update lockfile if needed
+        if: env.YARN_LOCK_MISMATCH == 'true'
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "chore: auto-fix lint & prettier" || echo "No changes to commit"
+          echo "Lockfile mismatch detected. Updating lockfile..."
+          yarn install --no-frozen-lockfile
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add yarn.lock
+          git commit -m "chore: update yarn.lock to match package.json"
           git push
+
+      - name: Run ESLint fix
+        run: yarn lint:fix
+
+      - name: Run Prettier fix
+        run: yarn format
+
+      - name: Commit changes if any
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -am "chore: auto-fix lint & format"
+            git push
+          fi
