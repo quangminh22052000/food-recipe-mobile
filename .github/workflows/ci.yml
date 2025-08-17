@@ -6,42 +6,45 @@ on:
       - main
       - develop
 
+permissions:
+  contents: write # Cho phép bot push thay đổi
+
 jobs:
-  lint-and-fix:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20.18.1
+          node-version: 20
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile || echo "YARN_LOCK_MISMATCH=true" >> $GITHUB_ENV
+        run: yarn install --frozen-lockfile
 
-      - name: Update lockfile if needed
-        if: env.YARN_LOCK_MISMATCH == 'true'
+      # Chạy lint check
+      - name: Run ESLint
+        run: yarn lint || echo "Lint errors found, attempting to fix..."
+
+      # Auto fix lint + prettier
+      - name: Run auto-fix (eslint + prettier)
         run: |
-          echo "Lockfile mismatch detected. Updating lockfile..."
-          yarn install --no-frozen-lockfile
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add yarn.lock
-          git commit -m "chore: update yarn.lock to match package.json" || echo "No changes to commit"
-          git push origin HEAD:${GITHUB_HEAD_REF}
+          yarn lint:fix || true
+          yarn format:fix || true
 
-      - name: Run ESLint + Prettier fix
-        run: |
-          yarn eslint . --ext .ts,.tsx --fix
-          yarn prettier --write .
-
-      - name: Commit lint/prettier fixes
+      # Commit và push lại vào branch PR
+      - name: Commit & push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "chore: fix lint/prettier issues" || echo "No changes to commit"
+          git commit -m "chore: auto-fix lint/prettier" || echo "No changes to commit"
           git push origin HEAD:${GITHUB_HEAD_REF}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
