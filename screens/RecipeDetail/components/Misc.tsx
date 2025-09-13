@@ -10,7 +10,7 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { RecipeProps } from "@/libs/common/types/recipe"
-import { hp } from "@/libs/common/utils/device/responsive"
+import { hp, wp } from "@/libs/common/utils/device/responsive"
 
 import { MiscItem } from "./MiscItem"
 
@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
   main: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: wp(5),
     marginVertical: 5,
   },
 })

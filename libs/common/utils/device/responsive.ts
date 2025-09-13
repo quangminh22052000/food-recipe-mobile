@@ -18,3 +18,12 @@ export const wp = (percentage: number): number => {
 export const hp = (percentage: number): number => {
   return (SCREEN_HEIGHT * percentage) / 100
 }
+
+/**
+ * Min Percent (mp) - tính theo phần trăm của chiều ngắn hơn (width hoặc height)
+ * @example mp(20) = 20% of the smaller dimension (width or height)
+ */
+
+export const minp = (percentage: number): number => {
+  return (Math.min(SCREEN_WIDTH, SCREEN_HEIGHT) * percentage) / 100
+}

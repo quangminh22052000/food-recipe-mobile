@@ -3,13 +3,18 @@ import React from "react"
 import { AntDesign, Entypo } from "@expo/vector-icons"
 import { useRouter } from "expo-router"
 import { StatusBar } from "expo-status-bar"
-import { Platform, StyleSheet, TouchableOpacity } from "react-native"
+import {
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { useFavoriteStore } from "@/libs/common/store/useFavoriteStore"
-import { hp, wp } from "@/libs/common/utils/device/responsive"
+import { hp } from "@/libs/common/utils/device/responsive"
 
 type Props = {
   id: string
@@ -26,6 +31,8 @@ export const RecipeHeader = (props: Props) => {
   const isFav = isFavorite(id)
 
   const router = useRouter()
+
+  const { width, height } = useWindowDimensions()
 
   const handleGoBack = () => {
     router.back()
@@ -45,7 +52,13 @@ export const RecipeHeader = (props: Props) => {
       <Animated.Image
         source={image}
         sharedTransitionTag={`recipe-${id}`}
-        style={[styles.image, { width: wp(100), height: hp(50) }]}
+        style={[
+          styles.image,
+          {
+            width: width, // fill toàn bộ chiều ngang hiện tại
+            height: height * 0.5, // 50% chiều cao màn hình
+          },
+        ]}
         resizeMode="cover"
       />
       <Animated.View
@@ -77,8 +90,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 500,
     borderRadius: 32,
-    borderTopLeftRadius: Platform.OS === "ios" ? 32 : 0,
-    borderTopRightRadius: Platform.OS === "ios" ? 32 : 0,
+    borderTopLeftRadius: Platform.OS === "ios" ? 30 : 0,
+    borderTopRightRadius: Platform.OS === "ios" ? 30 : 0,
   },
   overlay: {
     width: "100%",
