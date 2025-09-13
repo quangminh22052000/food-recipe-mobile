@@ -14,7 +14,7 @@ import Animated, {
 import { useAuthStore } from "@/libs/auth/store"
 import { images } from "@/libs/common/design-system/assets/images"
 import { lightColors } from "@/libs/common/design-system/colors"
-import { hp } from "@/libs/common/utils/device/responsive"
+import { hp, minp } from "@/libs/common/utils/device/responsive"
 
 export default function App() {
   const { token } = useAuthStore()
@@ -29,9 +29,9 @@ export default function App() {
 
   // Ring animation
   useEffect(() => {
-    ring1Padding.value = withSpring(hp(5))
+    ring1Padding.value = withSpring(minp(5)) // 5% cạnh nhỏ
     setTimeout(() => {
-      ring2Padding.value = withSpring(hp(5.5))
+      ring2Padding.value = withSpring(minp(6)) // 6% cạnh nhỏ
     }, 150)
   }, [])
 

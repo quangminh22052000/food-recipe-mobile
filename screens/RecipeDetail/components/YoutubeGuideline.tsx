@@ -1,6 +1,6 @@
 import React, { useMemo } from "react"
 
-import { StyleSheet } from "react-native"
+import { StyleSheet, useWindowDimensions } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 import YoutubePlayer from "react-native-youtube-iframe"
@@ -20,6 +20,9 @@ export const YoutubeGuideline = (props: YoutubeGuidelineProps) => {
     return cookingRecipeData.find((item: RecipeProps) => item.id === recipeId)
   }, [recipeId])
 
+  const { width } = useWindowDimensions()
+  const VIDEO_HEIGHT = (width * 9) / 16 // responsive theo tỉ lệ 16:9
+
   const getYoutubeVideoId = (url: string): string | null => {
     const regex =
       /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
@@ -33,7 +36,7 @@ export const YoutubeGuideline = (props: YoutubeGuidelineProps) => {
       style={styles.main}>
       <Text style={[styles.textBold, { fontSize: hp(2) }]}>Recipe Video</Text>
       <YoutubePlayer
-        height={300}
+        height={VIDEO_HEIGHT}
         videoId={getYoutubeVideoId(recipe?.recipeVideoUrl || "") || ""}
       />
     </Animated.View>
