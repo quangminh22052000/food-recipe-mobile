@@ -3,7 +3,7 @@ import React from "react"
 import MasonryList from "@react-native-seoul/masonry-list"
 import { useRouter } from "expo-router"
 import LottieView from "lottie-react-native"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, useWindowDimensions, View } from "react-native"
 import { Text } from "react-native-paper"
 
 import { animations } from "@/libs/common/design-system/assets/animations"
@@ -18,6 +18,10 @@ export const FavoritesList = () => {
   const router = useRouter()
 
   const { favoriteIds } = useFavoriteStore()
+
+  const { width, height } = useWindowDimensions()
+  const isPortrait = height >= width
+  const numColumns = isPortrait ? 2 : 3
 
   const handleNavigate = (recipeId: string) => {
     router.push({
@@ -38,7 +42,7 @@ export const FavoritesList = () => {
               (a, b) => favoriteIds.indexOf(a.id) - favoriteIds.indexOf(b.id),
             )}
           keyExtractor={(item: RecipeProps) => item.id}
-          numColumns={2}
+          numColumns={numColumns}
           showsVerticalScrollIndicator={false}
           renderItem={({ item, i }) => (
             <FavoriteCard

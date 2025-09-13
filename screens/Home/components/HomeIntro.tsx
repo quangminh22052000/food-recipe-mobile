@@ -18,6 +18,12 @@ export const HomeIntro = () => {
         {t("intro.hello", { name: "Ngọc Thạnh" })}
       </Text>
       <Text style={[styles.textBold, { fontSize: hp(3.8) }]}>
+        {t("intro.welcome1")}, {t("intro.welcome2")}{" "}
+        <Text style={[styles.textBold, { color: theme.colors.primary }]}>
+          {t("intro.welcome3")}
+        </Text>
+      </Text>
+      {/* <Text style={[styles.textBold, { fontSize: hp(3.8) }]}>
         {t("intro.welcome1")}, &nbsp;
       </Text>
       <Text
@@ -29,7 +35,7 @@ export const HomeIntro = () => {
           style={[styles.textBold, { color: theme.colors.primary }]}>
           {t("intro.welcome3")}
         </Text>
-      </Text>
+      </Text> */}
     </View>
   )
 }

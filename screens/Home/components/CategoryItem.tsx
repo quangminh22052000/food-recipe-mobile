@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
     margin: 7,
   },
   iconContainer: {
-    width: 70,
-    height: 70,
-    borderRadius: 50,
+    width: hp(7),
+    height: hp(7),
+    borderRadius: hp(9),
     padding: 5,
     justifyContent: "center",
     alignItems: "center",
@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 60,
     height: 60,
-    borderRadius: 50,
+    borderRadius: hp(9),
   },
 })

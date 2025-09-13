@@ -5,7 +5,7 @@ import { Text } from "react-native-paper"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
-import { hp } from "@/libs/common/utils/device/responsive"
+import { hp, wp } from "@/libs/common/utils/device/responsive"
 
 type Props = {
   figure: string
@@ -60,23 +60,23 @@ export const MiscItem = (props: Props) => {
 
 const styles = StyleSheet.create({
   main: {
-    width: 78,
-    height: 125,
+    width: wp(18), // chiếm khoảng 18% chiều rộng màn hình
+    height: hp(15), // chiếm 15% chiều cao màn hình
     display: "flex",
     alignItems: "center",
-    gap: 5,
-    borderRadius: 50,
-    padding: 10,
+    gap: hp(0.7),
+    borderRadius: wp(9), // luôn bo tròn theo height
+    padding: hp(1),
   },
   iconContainer: {
-    width: 50,
-    height: 50,
+    width: hp(6),
+    height: hp(6),
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
-    borderRadius: 50,
+    borderRadius: hp(3),
     backgroundColor: "white",
   },
   textBold: {
