@@ -22,14 +22,18 @@ import { images } from "@/libs/common/design-system/assets/images"
 import { ScreenWrapper } from "@/libs/common/design-system/components"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { hp } from "@/libs/common/utils/device/responsive"
+import { useRouter } from "expo-router"
 
 export const SettingOptions = () => {
-  const { isDarkMode, toggleTheme } = useThemeContext()
   const { t, i18n } = useTranslation()
+
   const theme = useTheme()
 
+  const { isDarkMode, toggleTheme } = useThemeContext()
+
+  const router = useRouter()
+
   const [language, setLanguage] = useState(i18n.language)
-  const [notifications, setNotifications] = useState(true)
 
   const changeLanguage = () => {
     const newLang = language === "en" ? "vi" : "en"
@@ -39,6 +43,13 @@ export const SettingOptions = () => {
       I18nManager.forceRTL(newLang === "vi")
     }
   }
+
+  const handleNavigateToAbout = () => {
+    router.push({
+      pathname: "/about-app",
+    })
+  }
+
   return (
     <ScreenWrapper contentContainerStyle={styles.container}>
       {/* Section 1: User info */}
@@ -122,9 +133,7 @@ export const SettingOptions = () => {
 
       {/* Section 3: About */}
       <View style={[styles.section, { backgroundColor: theme.colors.surface }]}>
-        <TouchableOpacity
-          onPress={() => setNotifications(!notifications)}
-          activeOpacity={0.7}>
+        <TouchableOpacity onPress={handleNavigateToAbout} activeOpacity={0.7}>
           <View style={styles.settingOptionsContainer}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Icon

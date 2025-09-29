@@ -1,0 +1,6 @@
+export * from "./Explore"
+export * from "./Header"
+export * from "./Hero"
+export * from "./Misson"
+export * from "./Team"
+export * from "./Values"
