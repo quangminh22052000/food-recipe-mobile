@@ -31,6 +31,8 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="about-app/index" />
+          <Stack.Screen name="recipe-detail/index" />
         </Stack>
         <FlashMessage position="top" />
         <GlobalLoading />
