@@ -1,8 +1,8 @@
 import React from "react"
 
 import { StyleSheet, View } from "react-native"
-import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated"
 import { Text } from "react-native-paper"
+import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated"
 
 export const Values = () => {
   return (

@@ -1,8 +1,8 @@
 import React from "react"
 
 import { StyleSheet } from "react-native"
-import Animated, { FadeInDown } from "react-native-reanimated"
 import { Text } from "react-native-paper"
+import Animated, { FadeInDown } from "react-native-reanimated"
 
 export const Misson = () => {
   return (

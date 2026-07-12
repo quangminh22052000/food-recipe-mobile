@@ -1,9 +1,9 @@
 import React from "react"
 
+import { useRouter } from "expo-router"
 import { StyleSheet, TouchableOpacity } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
-import { useRouter } from "expo-router"
 
 export const Explore = () => {
   const router = useRouter()

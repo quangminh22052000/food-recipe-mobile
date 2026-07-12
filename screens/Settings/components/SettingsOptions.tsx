@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react"
 
+import { useRouter } from "expo-router"
 import { useTranslation } from "react-i18next"
 import {
   I18nManager,
@@ -22,7 +23,6 @@ import { images } from "@/libs/common/design-system/assets/images"
 import { ScreenWrapper } from "@/libs/common/design-system/components"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { hp } from "@/libs/common/utils/device/responsive"
-import { useRouter } from "expo-router"
 
 export const SettingOptions = () => {
   const { t, i18n } = useTranslation()

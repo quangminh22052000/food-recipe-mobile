@@ -1,7 +1,9 @@
 import React from "react"
+
 import { StyleSheet } from "react-native"
 
 import { ScreenWrapper } from "@/libs/common/design-system/components"
+
 import { Header, Explore, Hero, Misson, Team, Values } from "./components"
 
 export const AboutApp = () => {

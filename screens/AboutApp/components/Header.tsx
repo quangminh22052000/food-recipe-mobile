@@ -1,11 +1,11 @@
 import React from "react"
 
+import { Ionicons } from "@expo/vector-icons"
+import { useRouter } from "expo-router"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { Text } from "react-native-paper"
 
 import { hp } from "@/libs/common/utils/device/responsive"
-import { useRouter } from "expo-router"
-import { Ionicons } from "@expo/vector-icons"
 
 export const Header = () => {
   const router = useRouter()
