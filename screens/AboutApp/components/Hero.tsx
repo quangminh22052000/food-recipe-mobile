@@ -1,8 +1,9 @@
 import React from "react"
 
 import { Dimensions, Image, StyleSheet } from "react-native"
-import Animated, { FadeInDown } from "react-native-reanimated"
 import { Text } from "react-native-paper"
+import Animated, { FadeInDown } from "react-native-reanimated"
+
 import { images } from "@/libs/common/design-system/assets/images"
 
 const { width } = Dimensions.get("window")
