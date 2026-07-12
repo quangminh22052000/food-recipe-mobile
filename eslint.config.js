@@ -39,7 +39,12 @@ const config = [
 
   // ✅ Cấu hình cho source code
   {
-    files: ["src/**/*.{ts,tsx,js,jsx}"], // chỉ lint trong src
+    files: [
+      "app/**/*.{ts,tsx,js,jsx}",
+      "libs/**/*.{ts,tsx,js,jsx}",
+      "screens/**/*.{ts,tsx,js,jsx}",
+      "__tests__/**/*.{ts,tsx,js,jsx}",
+    ],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
