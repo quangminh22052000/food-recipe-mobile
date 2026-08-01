@@ -18,33 +18,43 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.head_ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
-      # Chạy lint check
-      - name: Run ESLint
-        run: yarn lint || echo "Lint errors found, attempting to fix..."
+      - name: Expo Doctor
+        run: npx expo-doctor
 
-      # Auto fix lint + prettier
-      - name: Run auto-fix (eslint + prettier)
+      - name: Run auto-fix (ESLint + Prettier)
         run: |
-          yarn lint:fix || true
-          yarn format:fix || true
+          yarn lint:fix
+          yarn format
 
-      # Commit và push lại vào branch PR
+      - name: Check ESLint
+        run: yarn lint
+
+      - name: Check formatting
+        run: yarn format:check
+
       - name: Commit & push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "chore: auto-fix lint/prettier" || echo "No changes to commit"
-          git push origin HEAD:${GITHUB_HEAD_REF}
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: auto-fix lint/prettier"
+            git push origin HEAD:${GITHUB_HEAD_REF}
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
