@@ -1,0 +1,4 @@
+nodeLinker: hoisted
+allowBuilds:
+  unrs-resolver: true
+  dooboolab-welcome: false

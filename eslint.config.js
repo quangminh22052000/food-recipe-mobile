@@ -24,7 +24,7 @@ const config = [
 
   // ✅ Cấu hình môi trường cho các file cấu hình Node
   {
-    files: ["app.config.js", "babel.config.js", "metro.config.js"],
+    files: ["app.config.js", "babel.config.js", "metro.config.js", "metro.config.cjs"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module", // vẫn giữ ESM
