@@ -4,8 +4,8 @@ import { Pressable, StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
-import { RecipeProps } from "@/libs/common/types/recipe"
 import { hp } from "@/libs/common/utils/device/responsive"
+import { RecipeProps } from "@/libs/recipe/types"
 
 type Props = {
   index: number

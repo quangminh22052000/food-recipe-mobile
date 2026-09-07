@@ -8,7 +8,7 @@ import { useThemeContext } from "@/libs/common/design-system/theme"
 import { hp, wp } from "@/libs/common/utils/device/responsive"
 
 type Props = {
-  figure: string
+  figure: number | string
   unit: string
   icon: () => React.JSX.Element
 }

@@ -7,10 +7,10 @@ import { StyleSheet, useWindowDimensions, View } from "react-native"
 import { Text } from "react-native-paper"
 
 import { animations } from "@/libs/common/design-system/assets/animations"
-import { cookingRecipeData } from "@/libs/common/dummy-data"
-import { useFavoriteStore } from "@/libs/common/store/useFavoriteStore"
-import { RecipeProps } from "@/libs/common/types/recipe"
 import { wp } from "@/libs/common/utils/device/responsive"
+import { cookingRecipeData } from "@/libs/recipe/dummy-data"
+import { useFavoriteStore } from "@/libs/recipe/store"
+import { RecipeProps } from "@/libs/recipe/types"
 
 import { FavoriteCard } from "./FavoriteCard"
 

@@ -4,7 +4,7 @@ import { useLocalSearchParams } from "expo-router"
 import { StyleSheet } from "react-native"
 
 import { ScreenWrapper } from "@/libs/common/design-system/components"
-import { cookingRecipeData } from "@/libs/common/dummy-data"
+import { cookingRecipeData } from "@/libs/recipe/dummy-data"
 
 import { RecipeBody, RecipeHeader } from "./components"
 

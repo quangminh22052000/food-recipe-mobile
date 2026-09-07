@@ -13,8 +13,8 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
-import { useFavoriteStore } from "@/libs/common/store/useFavoriteStore"
 import { hp } from "@/libs/common/utils/device/responsive"
+import { useFavoriteStore } from "@/libs/recipe/store"
 
 type Props = {
   id: string

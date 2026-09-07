@@ -5,10 +5,10 @@ import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 
-import { cookingRecipeData } from "@/libs/common/dummy-data"
 import { useAppStore } from "@/libs/common/store"
-import { RecipeProps } from "@/libs/common/types/recipe"
 import { hp } from "@/libs/common/utils/device/responsive"
+import { cookingRecipeData } from "@/libs/recipe/dummy-data"
+import { RecipeProps } from "@/libs/recipe/types"
 
 import { RecipeCard } from "./RecipeCard"
 

@@ -3,8 +3,8 @@ import React from "react"
 import { FlatList, StyleSheet, View } from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
-import { categories } from "@/libs/common/dummy-data"
 import { useAppStore } from "@/libs/common/store"
+import { categories } from "@/libs/recipe/dummy-data"
 
 import { CategoryItem } from "./CategoryItem"
 

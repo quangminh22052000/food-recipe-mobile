@@ -8,9 +8,9 @@ import {
 import { StyleSheet } from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
-import { cookingRecipeData } from "@/libs/common/dummy-data"
-import { RecipeProps } from "@/libs/common/types/recipe"
 import { hp, wp } from "@/libs/common/utils/device/responsive"
+import { cookingRecipeData } from "@/libs/recipe/dummy-data"
+import { RecipeProps } from "@/libs/recipe/types"
 
 import { MiscItem } from "./MiscItem"
 

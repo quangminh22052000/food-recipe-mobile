@@ -1,7 +1,7 @@
-import { images } from "../design-system/assets/images"
-import { LevelOfDifficulties } from "../enums"
-import { RecipeCategories } from "../enums/recipeCategories"
-import { RecipeProps } from "../types/recipe"
+import { images } from "@/libs/common/design-system/assets/images"
+
+import { LevelOfDifficulties, RecipeCategories } from "../enums"
+import { RecipeProps } from "../types"
 
 export const cookingRecipeData: RecipeProps[] = [
   {
@@ -10,9 +10,9 @@ export const cookingRecipeData: RecipeProps[] = [
     typeName: RecipeCategories.NOODLE,
     image: images.bunBo,
     description: "Bún và bò",
-    cookingTime: "35",
-    numberOfServing: "2",
-    numberOfCalories: "600",
+    cookingTime: 35,
+    numberOfServing: 2,
+    numberOfCalories: 600,
     levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Bún", quantity: "200g" },
@@ -36,9 +36,9 @@ export const cookingRecipeData: RecipeProps[] = [
     typeName: RecipeCategories.RICE,
     image: images.comSuon,
     description: "Cơm và sườn",
-    cookingTime: "45",
-    numberOfServing: "3",
-    numberOfCalories: "700",
+    cookingTime: 45,
+    numberOfServing: 3,
+    numberOfCalories: 700,
     levelOfDifficulty: LevelOfDifficulties.MEDIUM,
     ingredients: [
       { name: "Cơm", quantity: "300g" },
@@ -62,9 +62,9 @@ export const cookingRecipeData: RecipeProps[] = [
     typeName: RecipeCategories.NOODLE,
     image: images.huTieu,
     description: "Hủ và tiếu",
-    cookingTime: "30",
-    numberOfServing: "2",
-    numberOfCalories: "500",
+    cookingTime: 30,
+    numberOfServing: 2,
+    numberOfCalories: 500,
     levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Hủ tiếu", quantity: "200g" },
@@ -88,9 +88,9 @@ export const cookingRecipeData: RecipeProps[] = [
     typeName: RecipeCategories.NOODLE,
     image: images.phoBo,
     description: "Phở và bò",
-    cookingTime: "60",
-    numberOfServing: "4",
-    numberOfCalories: "800",
+    cookingTime: 60,
+    numberOfServing: 4,
+    numberOfCalories: 800,
     levelOfDifficulty: LevelOfDifficulties.HARD,
     ingredients: [
       { name: "Phở", quantity: "300g" },
@@ -114,9 +114,9 @@ export const cookingRecipeData: RecipeProps[] = [
     typeName: RecipeCategories.NOODLE,
     image: images.miQuang,
     description: "Mì và Quảng",
-    cookingTime: "50",
-    numberOfServing: "3",
-    numberOfCalories: "650",
+    cookingTime: 50,
+    numberOfServing: 3,
+    numberOfCalories: 650,
     levelOfDifficulty: LevelOfDifficulties.MEDIUM,
     ingredients: [
       { name: "Mì Quảng", quantity: "250g" },
@@ -141,9 +141,9 @@ export const cookingRecipeData: RecipeProps[] = [
     typeName: RecipeCategories.RICE,
     image: images.comGa,
     description: "Cơm và gà",
-    cookingTime: "40",
-    numberOfServing: "2",
-    numberOfCalories: "550",
+    cookingTime: 40,
+    numberOfServing: 2,
+    numberOfCalories: 550,
     levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Cơm", quantity: "200g" },
@@ -167,9 +167,9 @@ export const cookingRecipeData: RecipeProps[] = [
     typeName: RecipeCategories.RICE,
     image: images.comChienDuongChau,
     description: "Cơm và chiên dương châu",
-    cookingTime: "40",
-    numberOfServing: "2",
-    numberOfCalories: "550",
+    cookingTime: 40,
+    numberOfServing: 2,
+    numberOfCalories: 550,
     levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Cơm", quantity: "200g" },
@@ -193,9 +193,9 @@ export const cookingRecipeData: RecipeProps[] = [
     typeName: RecipeCategories.RICE,
     image: images.comTronHanQuoc,
     description: "Cơm và trộn Hàn Quốc",
-    cookingTime: "30",
-    numberOfServing: "2",
-    numberOfCalories: "600",
+    cookingTime: 30,
+    numberOfServing: 2,
+    numberOfCalories: 600,
     levelOfDifficulty: LevelOfDifficulties.EASY,
     ingredients: [
       { name: "Cơm", quantity: "200g" },

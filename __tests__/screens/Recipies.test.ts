@@ -14,7 +14,7 @@ jest.mock("expo-router", () => ({
   }),
 }))
 
-jest.mock("@/libs/common/dummy-data", () => ({
+jest.mock("@/libs/recipe/dummy-data", () => ({
   cookingRecipeData: [
     {
       id: "1",
