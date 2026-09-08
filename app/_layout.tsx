@@ -1,5 +1,6 @@
 import React from "react"
 
+import * as Sentry from "@sentry/react-native"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { Stack } from "expo-router"
 import FlashMessage from "react-native-flash-message"
@@ -11,9 +12,18 @@ import {
 } from "@/libs/common/design-system/components"
 import { ThemeProvider } from "@/libs/common/design-system/theme"
 import { queryClient } from "@/libs/common/utils/network"
+import {
+  initSentry,
+  useSentryNavigationTracking,
+} from "@/libs/common/utils/sentry"
+
 import "../libs/common/utils/i18n"
 
-export default function RootLayout() {
+initSentry()
+
+function RootLayout() {
+  useSentryNavigationTracking()
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
@@ -41,3 +51,5 @@ export default function RootLayout() {
     </QueryClientProvider>
   )
 }
+
+export default Sentry.wrap(RootLayout)
