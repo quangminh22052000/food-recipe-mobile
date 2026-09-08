@@ -31,8 +31,11 @@ export const RecipeCard = (props: Props) => {
         ]}>
         <Animated.Image
           // source={{ uri: item.image }}
-          source={recipe.image}
+          source={{ uri: recipe.image as string }}
           sharedTransitionTag={`recipe-${recipe.id}`}
+          onError={() => {
+            console.log("🚀 ~ RecipeCard ~ onError", "error")
+          }}
           style={[styles.image, { height: index % 3 === 0 ? hp(35) : hp(25) }]}
           resizeMode="cover"
         />

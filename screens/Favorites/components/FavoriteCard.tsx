@@ -100,8 +100,8 @@ export const FavoriteCard = (props: Props) => {
           },
         ]}>
         <Animated.Image
-          // source={{ uri: item.image }}
-          source={favoritesRecipe.image}
+          source={{ uri: favoritesRecipe.image as string }}
+          // source={favoritesRecipe.image}
           sharedTransitionTag={`recipe-${favoritesRecipe.id}`}
           style={[styles.image, { width: wp(40), height: hp(20) }]}
           resizeMode="cover"

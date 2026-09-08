@@ -18,7 +18,7 @@ import { useFavoriteStore } from "@/libs/recipe/store"
 
 type Props = {
   id: string
-  image: number
+  image: string
 }
 
 export const RecipeHeader = (props: Props) => {
@@ -50,7 +50,7 @@ export const RecipeHeader = (props: Props) => {
     <>
       <StatusBar style="light" />
       <Animated.Image
-        source={image}
+        source={image ? { uri: image } : undefined}
         sharedTransitionTag={`recipe-${id}`}
         style={[
           styles.image,

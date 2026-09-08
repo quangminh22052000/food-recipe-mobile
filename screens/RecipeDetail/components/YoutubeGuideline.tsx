@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React from "react"
 
 import { StyleSheet, useWindowDimensions } from "react-native"
 import { Text } from "react-native-paper"
@@ -6,19 +6,14 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 import YoutubePlayer from "react-native-youtube-iframe"
 
 import { hp } from "@/libs/common/utils/device/responsive"
-import { cookingRecipeData } from "@/libs/recipe/dummy-data"
 import { RecipeProps } from "@/libs/recipe/types"
 
 type YoutubeGuidelineProps = {
-  recipeId: string
+  recipe: RecipeProps
 }
 
 export const YoutubeGuideline = (props: YoutubeGuidelineProps) => {
-  const { recipeId } = props
-
-  const recipe = useMemo(() => {
-    return cookingRecipeData.find((item: RecipeProps) => item.id === recipeId)
-  }, [recipeId])
+  const { recipe } = props
 
   const { width } = useWindowDimensions()
   const VIDEO_HEIGHT = (width * 9) / 16 // responsive theo tỉ lệ 16:9

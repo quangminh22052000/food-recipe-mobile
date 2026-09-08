@@ -1,23 +1,18 @@
-import React, { useMemo } from "react"
+import React from "react"
 
 import { StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { hp } from "@/libs/common/utils/device/responsive"
-import { cookingRecipeData } from "@/libs/recipe/dummy-data"
 import { RecipeProps } from "@/libs/recipe/types"
 
 type InstructionsProps = {
-  recipeId: string
+  recipe: RecipeProps
 }
 
 export const Instructions = (props: InstructionsProps) => {
-  const { recipeId } = props
-
-  const recipe = useMemo(() => {
-    return cookingRecipeData.find((item: RecipeProps) => item.id === recipeId)
-  }, [recipeId])
+  const { recipe } = props
 
   return (
     <Animated.View

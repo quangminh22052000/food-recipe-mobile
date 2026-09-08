@@ -18,9 +18,9 @@ type Props = {
 }
 
 export const CategoryItem = (props: Props) => {
-  const { name, image, type, activeCategory, setActiveCategory } = props
+  const { id, name, image, activeCategory, setActiveCategory } = props
 
-  const isActive = activeCategory === type
+  const isActive = activeCategory === id
 
   const { theme } = useThemeContext()
 
@@ -34,7 +34,7 @@ export const CategoryItem = (props: Props) => {
 
   return (
     <TouchableOpacity
-      onPress={() => handleSetActiveCategory(type)}
+      onPress={() => handleSetActiveCategory(id)}
       style={styles.main}>
       <View
         style={[
@@ -44,7 +44,7 @@ export const CategoryItem = (props: Props) => {
           },
         ]}>
         <Image
-          source={image}
+          source={{ uri: image as string }}
           style={[styles.icon, { width: hp(6), height: hp(6) }]}
           resizeMode="contain"
         />
