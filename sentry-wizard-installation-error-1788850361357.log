@@ -1,0 +1,53 @@
+? Verifying lockfile against supply-chain policies (1164 entries)...
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 22, reused 0, downloaded 0, added 0
+[WARN] deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+   ╭──────────────────────────────────────────────╮
+   │                                              │
+   │     Update available! 11.24.0 → 12.3.4.      │
+   │     Changelog: https://pnpm.io/v/12.3.4      │
+   │   To update, run: corepack use pnpm@12.3.4   │
+   │                                              │
+   ╰──────────────────────────────────────────────╯
+
+[WARN] deprecated @testing-library/jest-native@5.4.3: DEPRECATED: This package is no longer maintained.
+Please use the built-in Jest matchers available in @testing-library/react-native v12.4+.
+
+See migration guide: https://callstack.github.io/react-native-testing-library/docs/migration/jest-matchers
+[WARN] deprecated react-native-vector-icons@10.3.0: react-native-vector-icons package has moved to a new model of per-icon-family packages. See the https://github.com/oblador/react-native-vector-icons/blob/master/MIGRATION.md on how to migrate
+Progress: resolved 72, reused 0, downloaded 0, added 0
+Progress: resolved 76, reused 0, downloaded 0, added 0
+Progress: resolved 79, reused 0, downloaded 0, added 0
+Progress: resolved 84, reused 0, downloaded 0, added 0
+Progress: resolved 299, reused 0, downloaded 0, added 0
+Progress: resolved 327, reused 0, downloaded 0, added 0
+Progress: resolved 335, reused 0, downloaded 0, added 0
+Progress: resolved 336, reused 0, downloaded 0, added 0
+Progress: resolved 337, reused 0, downloaded 0, added 0
+✓ Lockfile passes supply-chain policies (1164 entries in 12.5s)
+Progress: resolved 338, reused 0, downloaded 0, added 0
+Progress: resolved 663, reused 0, downloaded 0, added 0
+Progress: resolved 945, reused 0, downloaded 0, added 0
+Progress: resolved 1136, reused 0, downloaded 0, added 0
+[WARN] 10 deprecated subdependencies found: @xmldom/xmldom@0.8.13, @xmldom/xmldom@0.9.10, abab@2.0.6, domexception@4.0.0, glob@10.5.0, glob@7.2.3, inflight@1.0.6, rimraf@3.0.2, uuid@7.0.3, whatwg-encoding@2.0.0
+Progress: resolved 1199, reused 0, downloaded 0, added 0
+[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+
+dependencies:
++ @sentry/react-native ^8.25.0
+
+Progress: resolved 1199, reused 59, downloaded 6, added 0
+Packages: +26 -48
+++++++++++++++++++++++++++------------------------------------------------
+Progress: resolved 1199, reused 59, downloaded 14, added 19
+Progress: resolved 1199, reused 59, downloaded 15, added 22
+Progress: resolved 1199, reused 59, downloaded 15, added 23
+Progress: resolved 1199, reused 59, downloaded 17, added 24
+Progress: resolved 1199, reused 59, downloaded 17, added 25
+Progress: resolved 1199, reused 59, downloaded 18, added 25
+Progress: resolved 1199, reused 59, downloaded 18, added 26
+Progress: resolved 1199, reused 59, downloaded 18, added 26, done
+[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: @sentry/cli@2.58.6, @sentry/cli@3.7.0
+
+Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.

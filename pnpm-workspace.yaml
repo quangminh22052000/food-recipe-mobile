@@ -2,3 +2,4 @@ nodeLinker: hoisted
 allowBuilds:
   unrs-resolver: true
   dooboolab-welcome: false
+  "@sentry/cli": true
