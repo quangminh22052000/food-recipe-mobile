@@ -6,9 +6,9 @@ import { Text, useTheme } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { lightColors } from "@/libs/common/design-system/colors"
-import { LevelOfDifficulties } from "@/libs/common/enums"
-import { RecipeProps } from "@/libs/common/types/recipe"
 import { hp, wp } from "@/libs/common/utils/device/responsive"
+import { LevelOfDifficulties } from "@/libs/recipe/enums"
+import { RecipeProps } from "@/libs/recipe/types"
 
 type Props = {
   index: number
@@ -100,8 +100,8 @@ export const FavoriteCard = (props: Props) => {
           },
         ]}>
         <Animated.Image
-          // source={{ uri: item.image }}
-          source={favoritesRecipe.image}
+          source={{ uri: favoritesRecipe.image as string }}
+          // source={favoritesRecipe.image}
           sharedTransitionTag={`recipe-${favoritesRecipe.id}`}
           style={[styles.image, { width: wp(40), height: hp(20) }]}
           resizeMode="cover"
