@@ -32,6 +32,8 @@ export const Recipies = () => {
 
   const handleNavigate = (recipeId: string) => {
     void openRecipe(recipeId)
+    // test sentry
+    // throw new Error("Sentry test from Food Recipe")
   }
 
   return (

@@ -81,6 +81,14 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     plugins: [
       "expo-router",
       [
+        "@sentry/react-native/expo",
+        {
+          url: "https://sentry.io/",
+          project: "food-recipe-mobile", // slug trên Sentry
+          organization: "quang-minh-corp-vc",
+        },
+      ],
+      [
         "expo-splash-screen",
         {
           image: "./libs/common/design-system/assets/images/app-logo.png",
