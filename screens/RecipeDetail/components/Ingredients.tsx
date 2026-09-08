@@ -1,26 +1,21 @@
-import React, { useMemo } from "react"
+import React from "react"
 
 import { StyleSheet, View } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { useThemeContext } from "@/libs/common/design-system/theme"
-import { cookingRecipeData } from "@/libs/common/dummy-data"
-import { RecipeProps } from "@/libs/common/types/recipe"
 import { hp } from "@/libs/common/utils/device/responsive"
+import { RecipeProps } from "@/libs/recipe/types"
 
 type IngredientsProps = {
-  recipeId: string
+  recipe: RecipeProps
 }
 
 export const Ingredients = (props: IngredientsProps) => {
-  const { recipeId } = props
+  const { recipe } = props
 
   const { theme } = useThemeContext()
-
-  const recipe = useMemo(() => {
-    return cookingRecipeData.find((item: RecipeProps) => item.id === recipeId)
-  }, [recipeId])
 
   return (
     <Animated.View

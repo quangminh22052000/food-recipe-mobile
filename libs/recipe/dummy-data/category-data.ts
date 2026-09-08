@@ -1,6 +1,7 @@
-import { images } from "../design-system/assets/images"
-import { RecipeCategories } from "../enums/recipeCategories"
-import { CategoryType } from "../types/category"
+import { images } from "@/libs/common/design-system/assets/images"
+
+import { RecipeCategories } from "../enums"
+import { CategoryType } from "../types"
 
 export const categories: CategoryType[] = [
   {

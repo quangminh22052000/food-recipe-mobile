@@ -1,28 +1,50 @@
-import React from "react"
+import React, { useLayoutEffect } from "react"
 
 import { useLocalSearchParams } from "expo-router"
 import { StyleSheet } from "react-native"
 
-import { ScreenWrapper } from "@/libs/common/design-system/components"
-import { cookingRecipeData } from "@/libs/common/dummy-data"
+import {
+  QueryState,
+  ScreenWrapper,
+} from "@/libs/common/design-system/components"
+import { useAppStore } from "@/libs/common/store"
+import { useRecipeAPI } from "@/libs/recipe/services/hooks/useRecipeAPI"
 
 import { RecipeBody, RecipeHeader } from "./components"
 
 export const RecipeDetail = () => {
-  const { id } = useLocalSearchParams()
+  const { id } = useLocalSearchParams<{ id: string }>()
+  const setLoading = useAppStore(state => state.setLoading)
 
-  const recipe = cookingRecipeData.find(item => item.id === id)
+  const {
+    data: recipe,
+    isLoading,
+    isError,
+    refetch,
+  } = useRecipeAPI.useRecipe(id)
 
-  if (!recipe) return null
+  useLayoutEffect(() => {
+    if (!isLoading) {
+      setLoading(false)
+    }
+  }, [isLoading, setLoading])
 
   return (
     <ScreenWrapper contentContainerStyle={styles.container}>
-      <RecipeHeader id={`${id}`} image={recipe.image} />
-      <RecipeBody
-        id={recipe.id}
-        name={recipe.name}
-        description={recipe.description}
-      />
+      <QueryState
+        isLoading={isLoading}
+        isError={isError}
+        isEmpty={!isLoading && !isError && !recipe}
+        errorMessage="Couldn't load this recipe."
+        emptyMessage="Recipe not found"
+        onRetry={refetch}>
+        {recipe ? (
+          <>
+            <RecipeHeader id={recipe.id} image={recipe.image} />
+            <RecipeBody recipe={recipe} />
+          </>
+        ) : null}
+      </QueryState>
     </ScreenWrapper>
   )
 }
@@ -30,5 +52,6 @@ export const RecipeDetail = () => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+    flexGrow: 1,
   },
 })

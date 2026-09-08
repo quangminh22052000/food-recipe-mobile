@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React from "react"
 
 import {
   Feather,
@@ -8,22 +8,17 @@ import {
 import { StyleSheet } from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
-import { cookingRecipeData } from "@/libs/common/dummy-data"
-import { RecipeProps } from "@/libs/common/types/recipe"
 import { hp, wp } from "@/libs/common/utils/device/responsive"
+import { RecipeProps } from "@/libs/recipe/types"
 
 import { MiscItem } from "./MiscItem"
 
 type MiscDataProps = {
-  recipeId: string
+  recipe: RecipeProps
 }
 
 export const Misc = (props: MiscDataProps) => {
-  const { recipeId } = props
-
-  const recipe = useMemo(() => {
-    return cookingRecipeData.find((item: RecipeProps) => item.id === recipeId)
-  }, [recipeId])
+  const { recipe } = props
 
   const micsData = [
     {
@@ -38,7 +33,7 @@ export const Misc = (props: MiscDataProps) => {
       ),
     },
     {
-      figure: recipe?.numberOfServing || "1",
+      figure: recipe?.numberOfServings || "1",
       unit: "servings",
       icon: () => <FontAwesome5 name="users" size={hp(2.5)} color="black" />,
     },

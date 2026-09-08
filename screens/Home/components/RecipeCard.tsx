@@ -4,8 +4,8 @@ import { Pressable, StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
-import { RecipeProps } from "@/libs/common/types/recipe"
 import { hp } from "@/libs/common/utils/device/responsive"
+import { RecipeProps } from "@/libs/recipe/types"
 
 type Props = {
   index: number
@@ -19,7 +19,7 @@ export const RecipeCard = (props: Props) => {
   const isEven = index % 2 === 0
   return (
     <Animated.View
-      entering={FadeInDown.delay(index * 100)
+      entering={FadeInDown.delay(index * 100 + 50)
         .duration(600)
         .springify()
         .damping(12)}>
@@ -31,8 +31,11 @@ export const RecipeCard = (props: Props) => {
         ]}>
         <Animated.Image
           // source={{ uri: item.image }}
-          source={recipe.image}
+          source={{ uri: recipe.image as string }}
           sharedTransitionTag={`recipe-${recipe.id}`}
+          onError={() => {
+            console.log("🚀 ~ RecipeCard ~ onError", "error")
+          }}
           style={[styles.image, { height: index % 3 === 0 ? hp(35) : hp(25) }]}
           resizeMode="cover"
         />
