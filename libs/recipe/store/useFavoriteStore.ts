@@ -1,8 +1,7 @@
-// libs/common/store/favoriteStore.ts
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
-import { zustandStorage } from "./zustandStorage"
+import { zustandStorage } from "@/libs/common/store/zustandStorage"
 
 interface FavoriteStore {
   favoriteIds: string[]

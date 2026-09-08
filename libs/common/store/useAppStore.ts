@@ -23,8 +23,8 @@ interface AppState {
   showDialog: (config: Omit<DialogConfig, "visible">) => void
   hideDialog: () => void
   // selected recipe type
-  typeName: string
-  setTypeName: (name: string) => void
+  selectedRecipeType: string
+  setSelectedRecipeType: (type: string) => void
 }
 
 export const useAppStore = create<AppState>(set => ({
@@ -74,6 +74,6 @@ export const useAppStore = create<AppState>(set => ({
       },
     })),
   //
-  typeName: "",
-  setTypeName: name => set({ typeName: name }),
+  selectedRecipeType: "",
+  setSelectedRecipeType: type => set({ selectedRecipeType: type }),
 }))

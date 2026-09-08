@@ -5,6 +5,7 @@ import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
 import { hp } from "@/libs/common/utils/device/responsive"
+import { RecipeProps } from "@/libs/recipe/types"
 
 import { Ingredients } from "./Ingredients"
 import { Instructions } from "./Instructions"
@@ -12,25 +13,26 @@ import { Misc } from "./Misc"
 import { YoutubeGuideline } from "./YoutubeGuideline"
 
 type Props = {
-  id: string
-  name: string
-  description: string
+  recipe: RecipeProps
 }
 
 export const RecipeBody = (props: Props) => {
-  const { id, name, description } = props
+  const { recipe } = props
+
   return (
     <View style={styles.main}>
       <Animated.View
         entering={FadeInDown.duration(700).springify().damping(12)}
         style={styles.intro}>
-        <Text style={[styles.textBold, { fontSize: hp(3) }]}>{name}</Text>
-        <Text style={{ fontSize: hp(1.7) }}>{description}</Text>
+        <Text style={[styles.textBold, { fontSize: hp(3) }]}>
+          {recipe.name}
+        </Text>
+        <Text style={{ fontSize: hp(1.7) }}>{recipe.description}</Text>
       </Animated.View>
-      <Misc recipeId={id} />
-      <Ingredients recipeId={id} />
-      <Instructions recipeId={id} />
-      <YoutubeGuideline recipeId={id} />
+      <Misc recipe={recipe} />
+      <Ingredients recipe={recipe} />
+      <Instructions recipe={recipe} />
+      <YoutubeGuideline recipe={recipe} />
     </View>
   )
 }
