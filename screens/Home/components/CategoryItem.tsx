@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react"
 
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
+import { Image, StyleSheet, TouchableOpacity } from "react-native"
 import { Text } from "react-native-paper"
+import Animated, {
+  interpolateColor,
+  useAnimatedStyle,
+  useDerivedValue,
+  withTiming,
+} from "react-native-reanimated"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
@@ -24,6 +30,18 @@ export const CategoryItem = (props: Props) => {
 
   const { theme } = useThemeContext()
 
+  const progress = useDerivedValue(() =>
+    withTiming(isActive ? 1 : 0, { duration: 200 }),
+  )
+
+  const animatedIconStyle = useAnimatedStyle(() => ({
+    backgroundColor: interpolateColor(
+      progress.value,
+      [0, 1],
+      [lightColors.grey, theme.colors.primary],
+    ),
+  }))
+
   const handleSetActiveCategory = (category: string) => {
     if (category === activeCategory) {
       setActiveCategory("")
@@ -36,19 +54,13 @@ export const CategoryItem = (props: Props) => {
     <TouchableOpacity
       onPress={() => handleSetActiveCategory(id)}
       style={styles.main}>
-      <View
-        style={[
-          styles.iconContainer,
-          {
-            backgroundColor: isActive ? theme.colors.primary : lightColors.grey,
-          },
-        ]}>
+      <Animated.View style={[styles.iconContainer, animatedIconStyle]}>
         <Image
           source={{ uri: image as string }}
           style={[styles.icon, { width: hp(6), height: hp(6) }]}
           resizeMode="contain"
         />
-      </View>
+      </Animated.View>
       <Text style={{ fontSize: hp(1.5) }}>{name}</Text>
     </TouchableOpacity>
   )

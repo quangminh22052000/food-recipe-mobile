@@ -50,6 +50,7 @@ export const Recipies = () => {
         onRetry={refetch}>
         <MasonryList
           data={filteredRecipes}
+          key={selectedRecipeType || "all"}
           keyExtractor={(item: RecipeProps) => item.id}
           numColumns={2}
           showsVerticalScrollIndicator={false}

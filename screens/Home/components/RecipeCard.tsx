@@ -19,7 +19,7 @@ export const RecipeCard = (props: Props) => {
   const isEven = index % 2 === 0
   return (
     <Animated.View
-      entering={FadeInDown.delay(index * 100)
+      entering={FadeInDown.delay(index * 100 + 50)
         .duration(600)
         .springify()
         .damping(12)}>

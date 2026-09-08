@@ -33,6 +33,7 @@ export const Categories = () => {
           onRetry={refetch}>
           <FlatList
             data={categories}
+            extraData={selectedRecipeType}
             horizontal
             showsHorizontalScrollIndicator={false}
             keyExtractor={(item, index) =>
