@@ -1,20 +1,26 @@
 import React from "react"
 
 import { AntDesign, Entypo } from "@expo/vector-icons"
+import { Image } from "expo-image"
 import { useRouter } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import {
-  Platform,
   StyleSheet,
   TouchableOpacity,
   useWindowDimensions,
+  View,
 } from "react-native"
 import Animated, { FadeInDown } from "react-native-reanimated"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { hp } from "@/libs/common/utils/device/responsive"
 import { useFavoriteStore } from "@/libs/recipe/store"
+
+const AnimatedExpoImage = Animated.createAnimatedComponent(Image)
+
+const HEADER_IMAGE_HEIGHT_RATIO = 0.5
 
 type Props = {
   id: string
@@ -33,6 +39,9 @@ export const RecipeHeader = (props: Props) => {
   const router = useRouter()
 
   const { width, height } = useWindowDimensions()
+  const insets = useSafeAreaInsets()
+
+  const imageHeight = height * HEADER_IMAGE_HEIGHT_RATIO + insets.top
 
   const handleGoBack = () => {
     router.back()
@@ -47,23 +56,28 @@ export const RecipeHeader = (props: Props) => {
   }
 
   return (
-    <>
+    <View
+      style={[
+        styles.header,
+        {
+          width,
+          height: imageHeight,
+          marginTop: -insets.top,
+        },
+      ]}>
       <StatusBar style="light" />
-      <Animated.Image
-        source={image ? { uri: image } : undefined}
+      <AnimatedExpoImage
+        source={{ uri: image }}
         sharedTransitionTag={`recipe-${id}`}
-        style={[
-          styles.image,
-          {
-            width: width, // fill toàn bộ chiều ngang hiện tại
-            height: height * 0.5, // 50% chiều cao màn hình
-          },
-        ]}
-        resizeMode="cover"
+        style={StyleSheet.absoluteFill}
+        contentFit="cover"
+        cachePolicy="memory-disk"
+        transition={200}
+        priority="high"
       />
       <Animated.View
         entering={FadeInDown.delay(200).duration(1000).springify()}
-        style={styles.overlay}>
+        style={[styles.overlay, { paddingTop: insets.top + hp(1) }]}>
         <TouchableOpacity onPress={handleGoBack} style={styles.buttonContainer}>
           <Entypo
             name="chevron-left"
@@ -81,25 +95,20 @@ export const RecipeHeader = (props: Props) => {
           />
         </TouchableOpacity>
       </Animated.View>
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  image: {
-    width: "100%",
-    height: 500,
-    borderRadius: 32,
-    borderTopLeftRadius: Platform.OS === "ios" ? 30 : 0,
-    borderTopRightRadius: Platform.OS === "ios" ? 30 : 0,
+  header: {
+    overflow: "hidden",
+    alignSelf: "center",
   },
   overlay: {
-    width: "100%",
+    ...StyleSheet.absoluteFillObject,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: 50,
-    position: "absolute",
+    alignItems: "flex-start",
   },
   buttonContainer: {
     justifyContent: "center",

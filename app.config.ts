@@ -80,6 +80,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     },
     plugins: [
       "expo-router",
+      "./plugins/withAndroidNodePath.cjs",
       [
         "@sentry/react-native/expo",
         {
@@ -88,6 +89,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
           organization: "quang-minh-corp-vc",
         },
       ],
+      "./plugins/withSentryGradleFix.cjs",
       [
         "expo-splash-screen",
         {
