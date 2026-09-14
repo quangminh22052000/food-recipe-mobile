@@ -17,7 +17,10 @@ export const useOpenRecipeDetail = () => {
 
       isOpeningRef.current = true
 
-      queryClient.removeQueries({ queryKey: recipeKeys.detail(id), exact: true })
+      queryClient.removeQueries({
+        queryKey: recipeKeys.detail(id),
+        exact: true,
+      })
 
       router.push({
         pathname: "/recipe-detail",

@@ -97,7 +97,7 @@ const withAndroidNodePath = config =>
           /<option name="env">[\s\S]*?<\/option>\s*/g,
           "",
         )
-        if (gradleXml.includes('gradleExternalEnvironment')) {
+        if (gradleXml.includes("gradleExternalEnvironment")) {
           gradleXml = gradleXml.replace(
             /(<entry key="PATH" value=")[^"]*(" \/>)/,
             `$1${pathForGradle}$2`,
