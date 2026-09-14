@@ -29,11 +29,11 @@ type RecipeRow = {
   number_of_servings: number
   number_of_calories: number | null
   level_of_difficulty: string
-  ingredients: {
+  ingredients?: {
     name: string
     quantity: string
   }[]
-  instructions: string[]
+  instructions?: string[]
   recipe_video_url: string | null
 }
 
@@ -49,7 +49,7 @@ export const mapRecipe = (row: RecipeRow): RecipeProps => ({
   numberOfServings: row.number_of_servings,
   numberOfCalories: row.number_of_calories,
   levelOfDifficulty: row.level_of_difficulty as LevelOfDifficulties,
-  ingredients: row.ingredients,
-  instructions: row.instructions,
+  ingredients: row.ingredients ?? [],
+  instructions: row.instructions ?? [],
   recipeVideoUrl: row.recipe_video_url,
 })

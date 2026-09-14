@@ -29,7 +29,7 @@ const serializeBody = (body: unknown) => {
   }
 }
 
-const report = (
+const addHttpBreadcrumb = (
   method: string,
   url: string,
   ok: boolean,
@@ -38,13 +38,11 @@ const report = (
   errorMessage?: string,
 ) => {
   const safeUrl = sanitizeUrl(url)
-  const truncatedBody = serializeBody(body)
-  const label = `API ${method} ${safeUrl} → ${status ?? "ERR"}`
   const data = {
     method,
     url: safeUrl,
     status,
-    body: truncatedBody,
+    body: body === undefined ? undefined : serializeBody(body),
     error: errorMessage,
   }
 
@@ -52,12 +50,32 @@ const report = (
     type: "http",
     category: "http",
     level: ok ? "info" : "error",
-    message: label,
+    message: `API ${method} ${safeUrl} → ${status ?? "ERR"}`,
     data,
   })
+}
+
+const reportFailure = (
+  method: string,
+  url: string,
+  status?: number,
+  body?: unknown,
+  errorMessage?: string,
+) => {
+  const safeUrl = sanitizeUrl(url)
+  const label = `API ${method} ${safeUrl} → ${status ?? "ERR"}`
+  const data = {
+    method,
+    url: safeUrl,
+    status,
+    body: body === undefined ? undefined : serializeBody(body),
+    error: errorMessage,
+  }
+
+  addHttpBreadcrumb(method, url, false, status, body, errorMessage)
 
   Sentry.captureMessage(label, {
-    level: ok ? "info" : "error",
+    level: "error",
     fingerprint: ["api", method, safeUrl, String(status ?? "ERR")],
     extra: data,
   })
@@ -77,11 +95,11 @@ export const sentryTracedFetch: typeof fetch = async (input, init) => {
     return fetch(input, init)
   }
 
-  return Sentry.startSpan(
-    { op: "http.client", name: `${method} ${sanitizeUrl(url)}` },
-    async span => {
-      try {
-        const response = await fetch(input, init)
+  const runFetch = async () => {
+    try {
+      const response = await fetch(input, init)
+
+      if (!response.ok) {
         let body: unknown
         try {
           const contentType = response.headers.get("content-type") ?? ""
@@ -91,21 +109,34 @@ export const sentryTracedFetch: typeof fetch = async (input, init) => {
         } catch {
           body = undefined
         }
-
-        span.setAttribute("http.response.status_code", response.status)
-        report(method, url, response.ok, response.status, body)
+        reportFailure(method, url, response.status, body)
         return response
-      } catch (error) {
-        report(
-          method,
-          url,
-          false,
-          undefined,
-          undefined,
-          error instanceof Error ? error.message : String(error),
-        )
-        throw error
       }
+
+      addHttpBreadcrumb(method, url, true, response.status)
+      return response
+    } catch (error) {
+      reportFailure(
+        method,
+        url,
+        undefined,
+        undefined,
+        error instanceof Error ? error.message : String(error),
+      )
+      throw error
+    }
+  }
+
+  if (__DEV__) {
+    return runFetch()
+  }
+
+  return Sentry.startSpan(
+    { op: "http.client", name: `${method} ${sanitizeUrl(url)}` },
+    async span => {
+      const response = await runFetch()
+      span.setAttribute("http.response.status_code", response.status)
+      return response
     },
   )
 }

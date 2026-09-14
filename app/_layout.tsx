@@ -42,7 +42,16 @@ function RootLayout() {
           />
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="about-app/index" />
-          <Stack.Screen name="recipe-detail/index" />
+          {/* <Stack.Screen name="recipe-detail/index" /> */}
+          <Stack.Screen
+            name="recipe-detail/index"
+            options={{
+              presentation: "modal",
+              animation: "slide_from_bottom",
+              gestureEnabled: true, // enable gesture to dismiss the modal
+              contentStyle: { backgroundColor: "transparent" }, // set the background color of the modal to transparent
+            }}
+          />
         </Stack>
         <FlashMessage position="top" />
         <GlobalLoading />

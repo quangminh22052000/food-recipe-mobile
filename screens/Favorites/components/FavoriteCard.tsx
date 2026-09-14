@@ -1,6 +1,7 @@
 import React from "react"
 
 import { MaterialCommunityIcons } from "@expo/vector-icons"
+import { Image } from "expo-image"
 import { Pressable, StyleSheet, View } from "react-native"
 import { Text, useTheme } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
@@ -9,6 +10,8 @@ import { lightColors } from "@/libs/common/design-system/colors"
 import { hp, wp } from "@/libs/common/utils/device/responsive"
 import { LevelOfDifficulties } from "@/libs/recipe/enums"
 import { RecipeProps } from "@/libs/recipe/types"
+
+const AnimatedExpoImage = Animated.createAnimatedComponent(Image)
 
 type Props = {
   index: number
@@ -99,12 +102,20 @@ export const FavoriteCard = (props: Props) => {
             backgroundColor: theme.colors.surface,
           },
         ]}>
-        <Animated.Image
+        <AnimatedExpoImage
           source={{ uri: favoritesRecipe.image as string }}
-          // source={favoritesRecipe.image}
           sharedTransitionTag={`recipe-${favoritesRecipe.id}`}
-          style={[styles.image, { width: wp(40), height: hp(20) }]}
-          resizeMode="cover"
+          style={[
+            styles.image,
+            {
+              width: wp(40),
+              height: hp(20),
+            },
+          ]}
+          contentFit="cover"
+          cachePolicy="memory-disk"
+          transition={200}
+          priority="high"
         />
         <Text
           style={[styles.textBold, { fontSize: hp(1.7), marginVertical: 5 }]}

@@ -1,5 +1,6 @@
 import React from "react"
 
+import { Image } from "expo-image"
 import { Pressable, StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
@@ -7,11 +8,12 @@ import Animated, { FadeInDown } from "react-native-reanimated"
 import { hp } from "@/libs/common/utils/device/responsive"
 import { RecipeProps } from "@/libs/recipe/types"
 
+const AnimatedExpoImage = Animated.createAnimatedComponent(Image)
+
 type Props = {
   index: number
   recipe: RecipeProps
   handleNavigate: (id: string) => void
-  imageAnimatedStyle?: React.ComponentProps<typeof Animated.Image>
 }
 
 export const RecipeCard = (props: Props) => {
@@ -29,15 +31,13 @@ export const RecipeCard = (props: Props) => {
           styles.main,
           { paddingLeft: isEven ? 0 : 8, paddingRight: isEven ? 8 : 0 },
         ]}>
-        <Animated.Image
-          // source={{ uri: item.image }}
+        <AnimatedExpoImage
           source={{ uri: recipe.image as string }}
           sharedTransitionTag={`recipe-${recipe.id}`}
-          onError={() => {
-            console.log("🚀 ~ RecipeCard ~ onError", "error")
-          }}
           style={[styles.image, { height: index % 3 === 0 ? hp(35) : hp(25) }]}
-          resizeMode="cover"
+          contentFit="cover"
+          cachePolicy="memory-disk"
+          transition={200}
         />
         <Text style={{ fontSize: hp(1.7), marginTop: 5 }} numberOfLines={1}>
           {recipe.name.length > 20
