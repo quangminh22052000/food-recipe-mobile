@@ -15,6 +15,7 @@ import { useAuthStore } from "@/libs/auth/store"
 import { images } from "@/libs/common/design-system/assets/images"
 import { lightColors } from "@/libs/common/design-system/colors"
 import { hp, minp } from "@/libs/common/utils/device/responsive"
+import { prefetchHomeData } from "@/libs/recipe/services/prefetch-home-data"
 
 export default function App() {
   const { token } = useAuthStore()
@@ -26,6 +27,10 @@ export default function App() {
   const scaleImage = useSharedValue(0.8)
   const opacityText = useSharedValue(0)
   const translateYText = useSharedValue(10)
+
+  useEffect(() => {
+    void prefetchHomeData()
+  }, [])
 
   // Ring animation
   useEffect(() => {
