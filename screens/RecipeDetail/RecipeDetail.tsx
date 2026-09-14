@@ -1,38 +1,35 @@
-import React, { useLayoutEffect } from "react"
+import React from "react"
 
 import { useLocalSearchParams } from "expo-router"
-import { StyleSheet } from "react-native"
+import { ActivityIndicator, StyleSheet, View } from "react-native"
 
 import {
   QueryState,
   ScreenWrapper,
 } from "@/libs/common/design-system/components"
-import { useAppStore } from "@/libs/common/store"
+import { useThemeContext } from "@/libs/common/design-system/theme"
 import { useRecipeAPI } from "@/libs/recipe/services/hooks/useRecipeAPI"
 
 import { RecipeBody, RecipeHeader } from "./components"
 
 export const RecipeDetail = () => {
   const { id } = useLocalSearchParams<{ id: string }>()
-  const setLoading = useAppStore(state => state.setLoading)
+  const { theme } = useThemeContext()
 
   const {
     data: recipe,
     isLoading,
+    isPlaceholderData,
     isError,
     refetch,
   } = useRecipeAPI.useRecipe(id)
 
-  useLayoutEffect(() => {
-    if (!isLoading) {
-      setLoading(false)
-    }
-  }, [isLoading, setLoading])
-
   return (
-    <ScreenWrapper contentContainerStyle={styles.container}>
+    <ScreenWrapper
+      style={styles.screen}
+      contentContainerStyle={styles.container}>
       <QueryState
-        isLoading={isLoading}
+        isLoading={isLoading && !recipe}
         isError={isError}
         isEmpty={!isLoading && !isError && !recipe}
         errorMessage="Couldn't load this recipe."
@@ -40,8 +37,13 @@ export const RecipeDetail = () => {
         onRetry={refetch}>
         {recipe ? (
           <>
-            <RecipeHeader id={recipe.id} image={recipe.image} />
+            <RecipeHeader id={recipe.id} image={recipe.image as string} />
             <RecipeBody recipe={recipe} />
+            {isPlaceholderData ? (
+              <View style={styles.detailLoading}>
+                <ActivityIndicator color={theme.colors.primary} />
+              </View>
+            ) : null}
           </>
         ) : null}
       </QueryState>
@@ -50,8 +52,19 @@ export const RecipeDetail = () => {
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    paddingLeft: 0,
+    paddingRight: 0,
+    backgroundColor: "transparent",
+  },
   container: {
-    alignItems: "center",
+    alignItems: "stretch",
     flexGrow: 1,
+    width: "100%",
+  },
+  detailLoading: {
+    paddingVertical: 16,
+    alignItems: "center",
+    width: "100%",
   },
 })
