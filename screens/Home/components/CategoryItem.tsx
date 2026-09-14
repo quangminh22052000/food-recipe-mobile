@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react"
 
-import { Image, StyleSheet, TouchableOpacity } from "react-native"
+import { Image } from "expo-image"
+import { StyleSheet, TouchableOpacity } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, {
   interpolateColor,
@@ -58,7 +59,9 @@ export const CategoryItem = (props: Props) => {
         <Image
           source={{ uri: image as string }}
           style={[styles.icon, { width: hp(6), height: hp(6) }]}
-          resizeMode="contain"
+          contentFit="contain"
+          cachePolicy="memory-disk"
+          transition={200}
         />
       </Animated.View>
       <Text style={{ fontSize: hp(1.5) }}>{name}</Text>

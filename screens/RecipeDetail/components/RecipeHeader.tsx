@@ -1,6 +1,7 @@
 import React from "react"
 
 import { AntDesign, Entypo } from "@expo/vector-icons"
+import { Image } from "expo-image"
 import { useRouter } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import {
@@ -15,6 +16,8 @@ import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { hp } from "@/libs/common/utils/device/responsive"
 import { useFavoriteStore } from "@/libs/recipe/store"
+
+const AnimatedExpoImage = Animated.createAnimatedComponent(Image)
 
 type Props = {
   id: string
@@ -49,17 +52,20 @@ export const RecipeHeader = (props: Props) => {
   return (
     <>
       <StatusBar style="light" />
-      <Animated.Image
-        source={image ? { uri: image } : undefined}
+      <AnimatedExpoImage
+        source={{ uri: image }}
         sharedTransitionTag={`recipe-${id}`}
         style={[
           styles.image,
           {
-            width: width, // fill toàn bộ chiều ngang hiện tại
+            width, // fill toàn bộ chiều ngang hiện tại
             height: height * 0.5, // 50% chiều cao màn hình
           },
         ]}
-        resizeMode="cover"
+        contentFit="cover"
+        cachePolicy="memory-disk"
+        transition={200}
+        priority="high"
       />
       <Animated.View
         entering={FadeInDown.delay(200).duration(1000).springify()}
