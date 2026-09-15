@@ -4,6 +4,24 @@ const path = require("path")
 
 const { withDangerousMod } = require("expo/config-plugins")
 
+const { resolveJavaHome } = require("../scripts/resolve-java-home.cjs")
+
+const upsertGradleJavaHome = (gradlePropertiesPath, javaHome) => {
+  if (!fs.existsSync(gradlePropertiesPath)) return
+
+  const marker = "# expo-java-home-21"
+  let contents = fs.readFileSync(gradlePropertiesPath, "utf8")
+  const line = `org.gradle.java.home=${javaHome}`
+
+  if (/^org\.gradle\.java\.home=/m.test(contents)) {
+    contents = contents.replace(/^org\.gradle\.java\.home=.*$/m, line)
+  } else {
+    contents = `${contents.trimEnd()}\n\n${marker}\n${line}\n`
+  }
+
+  fs.writeFileSync(gradlePropertiesPath, contents)
+}
+
 const resolveNodeBinary = () => {
   const candidates = [
     process.env.NODE_BINARY,
@@ -38,6 +56,14 @@ const withAndroidNodePath = config =>
       const binDir = path.join(androidDir, ".bin")
       const nodeShim = path.join(binDir, "node")
       const nodePath = resolveNodeBinary()
+      const javaHome = resolveJavaHome()
+
+      if (javaHome) {
+        upsertGradleJavaHome(
+          path.join(androidDir, "gradle.properties"),
+          javaHome,
+        )
+      }
 
       fs.mkdirSync(binDir, { recursive: true })
       fs.writeFileSync(
@@ -75,18 +101,26 @@ const withAndroidNodePath = config =>
       const ideaDir = path.join(androidDir, ".idea")
       const gradleXmlPath = path.join(ideaDir, "gradle.xml")
       const pathForGradle = [
+        javaHome ? path.join(javaHome, "bin") : null,
         binDir,
         "/usr/local/bin",
         "/opt/homebrew/bin",
         "/usr/bin",
         "/bin",
-      ].join(":")
+      ]
+        .filter(Boolean)
+        .join(":")
 
       fs.mkdirSync(ideaDir, { recursive: true })
 
+      const javaHomeEntry = javaHome
+        ? `            <entry key="JAVA_HOME" value="${javaHome}" />\n`
+        : ""
+      const gradleJvmValue = javaHome ?? "#GRADLE_LOCAL_JAVA_HOME"
+
       const envBlock = `        <option name="gradleExternalEnvironment">
           <map>
-            <entry key="PATH" value="${pathForGradle}" />
+${javaHomeEntry}            <entry key="PATH" value="${pathForGradle}" />
           </map>
         </option>
 `
@@ -97,7 +131,22 @@ const withAndroidNodePath = config =>
           /<option name="env">[\s\S]*?<\/option>\s*/g,
           "",
         )
+        gradleXml = gradleXml.replace(
+          /<option name="gradleJvm" value="[^"]*" \/>/,
+          `<option name="gradleJvm" value="${gradleJvmValue}" />`,
+        )
         if (gradleXml.includes("gradleExternalEnvironment")) {
+          if (javaHome && !gradleXml.includes('key="JAVA_HOME"')) {
+            gradleXml = gradleXml.replace(
+              /(<map>\s*)/,
+              `$1<entry key="JAVA_HOME" value="${javaHome}" />\n            `,
+            )
+          } else if (javaHome) {
+            gradleXml = gradleXml.replace(
+              /(<entry key="JAVA_HOME" value=")[^"]*(" \/>)/,
+              `$1${javaHome}$2`,
+            )
+          }
           gradleXml = gradleXml.replace(
             /(<entry key="PATH" value=")[^"]*(" \/>)/,
             `$1${pathForGradle}$2`,
@@ -120,7 +169,7 @@ const withAndroidNodePath = config =>
       <GradleProjectSettings>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="gradleJvm" value="${gradleJvmValue}" />
 ${envBlock}      </GradleProjectSettings>
     </option>
   </component>
