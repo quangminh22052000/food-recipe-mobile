@@ -42,9 +42,12 @@ const normalizeHome = candidate => {
 const macOsCandidates = () => {
   const list = []
   try {
-    const fromTool = execSync(`/usr/libexec/java_home -v ${REQUIRED_MAJOR} 2>/dev/null`, {
-      encoding: "utf8",
-    }).trim()
+    const fromTool = execSync(
+      `/usr/libexec/java_home -v ${REQUIRED_MAJOR} 2>/dev/null`,
+      {
+        encoding: "utf8",
+      },
+    ).trim()
     if (fromTool) list.push(fromTool)
   } catch {
     /* ignore */
