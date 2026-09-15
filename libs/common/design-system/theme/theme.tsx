@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from "react"
 import {
   DefaultTheme as NavigationLight,
   DarkTheme as NavigationDark,
+  ThemeProvider as NavigationThemeProvider,
 } from "@react-navigation/native"
 import merge from "deepmerge"
 import { StatusBar } from "expo-status-bar"
@@ -17,29 +18,40 @@ import { lightColors, darkColors } from "../colors"
 const CombinedLightTheme = merge(PaperLight, NavigationLight)
 const CombinedDarkTheme = merge(PaperDark, NavigationDark)
 
-const lightTheme = {
-  ...CombinedLightTheme,
+const withNavigationSurfaces = (
+  base: typeof CombinedLightTheme,
   colors: {
-    ...CombinedLightTheme.colors,
-    primary: lightColors.primary,
-    background: lightColors.lightModeBackground,
-    text: lightColors.dark,
-    headerBackground: lightColors.headerLightBackground,
-    tabBarBackground: lightColors.tabBarLightBackground,
+    primary: string
+    background: string
+    text: string
+    headerBackground: string
+    tabBarBackground: string
   },
-}
+) => ({
+  ...base,
+  colors: {
+    ...base.colors,
+    ...colors,
+    card: colors.background,
+    border: base.colors.border,
+  },
+})
 
-const darkTheme = {
-  ...CombinedDarkTheme,
-  colors: {
-    ...CombinedDarkTheme.colors,
-    primary: darkColors.primary,
-    background: darkColors.darkModeBackground,
-    text: darkColors.white,
-    headerBackground: darkColors.headerDarkBackground,
-    tabBarBackground: darkColors.tabBarDarkBackground,
-  },
-}
+const lightTheme = withNavigationSurfaces(CombinedLightTheme, {
+  primary: lightColors.primary,
+  background: lightColors.lightModeBackground,
+  text: lightColors.dark,
+  headerBackground: lightColors.headerLightBackground,
+  tabBarBackground: lightColors.tabBarLightBackground,
+})
+
+const darkTheme = withNavigationSurfaces(CombinedDarkTheme, {
+  primary: darkColors.primary,
+  background: darkColors.darkModeBackground,
+  text: darkColors.white,
+  headerBackground: darkColors.headerDarkBackground,
+  tabBarBackground: darkColors.tabBarDarkBackground,
+})
 
 // 🟢 Tạo Context để lưu theme
 const ThemeContext = createContext({
@@ -59,10 +71,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme, theme }}>
-      <PaperProvider theme={theme}>
-        <StatusBar style={isDarkMode ? "light" : "dark"} />
-        {children}
-      </PaperProvider>
+      <NavigationThemeProvider value={theme}>
+        <PaperProvider theme={theme}>
+          <StatusBar style={isDarkMode ? "light" : "dark"} />
+          {children}
+        </PaperProvider>
+      </NavigationThemeProvider>
     </ThemeContext.Provider>
   )
 }
