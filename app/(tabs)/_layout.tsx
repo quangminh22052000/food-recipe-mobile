@@ -13,6 +13,7 @@ const TabLayout = () => {
       tabBar={props => <TabBar {...props} />}
       screenOptions={{
         animation: "shift",
+        sceneStyle: { backgroundColor: theme.colors.background },
         headerStyle: {
           backgroundColor: theme.colors.headerBackground,
         },
