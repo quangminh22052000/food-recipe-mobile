@@ -10,7 +10,10 @@ import {
   GlobalLoading,
   Header,
 } from "@/libs/common/design-system/components"
-import { ThemeProvider } from "@/libs/common/design-system/theme"
+import {
+  ThemeProvider,
+  useThemeContext,
+} from "@/libs/common/design-system/theme"
 import { queryClient } from "@/libs/common/utils/network"
 import {
   initSentry,
@@ -21,41 +24,50 @@ import "../libs/common/utils/i18n"
 
 initSentry()
 
-function RootLayout() {
+function RootStack() {
   useSentryNavigationTracking()
+  const { theme } = useThemeContext()
 
+  return (
+    <>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          animation: "slide_from_right",
+          contentStyle: { backgroundColor: theme.colors.background },
+        }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen
+          name="not-found"
+          options={{
+            headerShown: true,
+            header: () => <Header title="Not Found" mode="small" />,
+          }}
+        />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="about-app/index" />
+        <Stack.Screen
+          name="recipe-detail/index"
+          options={{
+            presentation: "modal",
+            animation: "slide_from_bottom",
+            gestureEnabled: true,
+            contentStyle: { backgroundColor: theme.colors.background },
+          }}
+        />
+      </Stack>
+      <FlashMessage position="top" />
+      <GlobalLoading />
+      <GlobalDialog />
+    </>
+  )
+}
+
+function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <Stack
-          screenOptions={() => ({
-            headerShown: false,
-            animation: "slide_from_right",
-          })}>
-          <Stack.Screen name="index" />
-          <Stack.Screen
-            name="not-found"
-            options={{
-              headerShown: true,
-              header: () => <Header title="Not Found" mode="small" />,
-            }}
-          />
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="about-app/index" />
-          {/* <Stack.Screen name="recipe-detail/index" /> */}
-          <Stack.Screen
-            name="recipe-detail/index"
-            options={{
-              presentation: "modal",
-              animation: "slide_from_bottom",
-              gestureEnabled: true, // enable gesture to dismiss the modal
-              contentStyle: { backgroundColor: "transparent" }, // set the background color of the modal to transparent
-            }}
-          />
-        </Stack>
-        <FlashMessage position="top" />
-        <GlobalLoading />
-        <GlobalDialog />
+        <RootStack />
       </ThemeProvider>
     </QueryClientProvider>
   )
