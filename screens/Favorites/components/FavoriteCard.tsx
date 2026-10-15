@@ -6,6 +6,7 @@ import { Pressable, StyleSheet, View } from "react-native"
 import { Text, useTheme } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
+import { toImageSource } from "@/libs/common/design-system/assets/images"
 import { lightColors } from "@/libs/common/design-system/colors"
 import { hp, wp } from "@/libs/common/utils/device/responsive"
 import { LevelOfDifficulties } from "@/libs/recipe/enums"
@@ -103,7 +104,7 @@ export const FavoriteCard = (props: Props) => {
           },
         ]}>
         <AnimatedExpoImage
-          source={{ uri: favoritesRecipe.image as string }}
+          source={toImageSource(favoritesRecipe.image)}
           sharedTransitionTag={`recipe-${favoritesRecipe.id}`}
           style={[
             styles.image,
