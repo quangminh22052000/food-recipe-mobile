@@ -11,6 +11,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated"
 
+import { toImageSource } from "@/libs/common/design-system/assets/images"
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { hp } from "@/libs/common/utils/device/responsive"
@@ -57,7 +58,7 @@ export const CategoryItem = (props: Props) => {
       style={styles.main}>
       <Animated.View style={[styles.iconContainer, animatedIconStyle]}>
         <Image
-          source={{ uri: image as string }}
+          source={toImageSource(image)}
           style={[styles.icon, { width: hp(6), height: hp(6) }]}
           contentFit="contain"
           cachePolicy="memory-disk"

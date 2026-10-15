@@ -1,15 +1,11 @@
-import { supabase } from "@/libs/common/utils/network"
+import { categories } from "../../dummy-data"
+import { CategoryType } from "../../types"
 
-import { CategoryType, mapCategory } from "../../types"
+const byName = (a: CategoryType, b: CategoryType) =>
+  a.name.localeCompare(b.name)
 
 const getCategories = async (): Promise<CategoryType[]> => {
-  const { data, error } = await supabase
-    .from("categories")
-    .select("id, name, type, image_path, description")
-    .order("name", { ascending: true })
-
-  if (error) throw error
-  return (data ?? []).map(mapCategory)
+  return [...categories].sort(byName)
 }
 
 export const categoryAPI = { getCategories }

@@ -37,7 +37,7 @@ export const RecipeDetail = () => {
         onRetry={refetch}>
         {recipe ? (
           <>
-            <RecipeHeader id={recipe.id} image={recipe.image as string} />
+            <RecipeHeader id={recipe.id} image={recipe.image} />
             <RecipeBody recipe={recipe} />
             {isPlaceholderData ? (
               <View style={styles.detailLoading}>

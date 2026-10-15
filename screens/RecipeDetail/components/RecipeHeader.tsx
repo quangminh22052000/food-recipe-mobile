@@ -13,10 +13,12 @@ import {
 import Animated, { FadeInDown } from "react-native-reanimated"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
+import { toImageSource } from "@/libs/common/design-system/assets/images"
 import { lightColors } from "@/libs/common/design-system/colors"
 import { useThemeContext } from "@/libs/common/design-system/theme"
 import { hp } from "@/libs/common/utils/device/responsive"
 import { useFavoriteStore } from "@/libs/recipe/store"
+import { RecipeProps } from "@/libs/recipe/types"
 
 const AnimatedExpoImage = Animated.createAnimatedComponent(Image)
 
@@ -24,7 +26,7 @@ const HEADER_IMAGE_HEIGHT_RATIO = 0.5
 
 type Props = {
   id: string
-  image: string
+  image: RecipeProps["image"]
 }
 
 export const RecipeHeader = (props: Props) => {
@@ -67,7 +69,7 @@ export const RecipeHeader = (props: Props) => {
       ]}>
       <StatusBar style="light" />
       <AnimatedExpoImage
-        source={{ uri: image }}
+        source={toImageSource(image)}
         sharedTransitionTag={`recipe-${id}`}
         style={StyleSheet.absoluteFill}
         contentFit="cover"

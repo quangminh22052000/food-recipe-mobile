@@ -1,29 +1,14 @@
-import { supabase } from "@/libs/common/utils/network"
+import { cookingRecipeData } from "../../dummy-data"
+import { RecipeProps } from "../../types"
 
-import { mapRecipe, RecipeProps } from "../../types"
-
-const RECIPE_LIST_COLUMNS =
-  "id, category_id, name, description, image_path, cooking_time, number_of_servings, number_of_calories, level_of_difficulty, recipe_video_url"
+const byName = (a: RecipeProps, b: RecipeProps) => a.name.localeCompare(b.name)
 
 const getRecipes = async (): Promise<RecipeProps[]> => {
-  const { data, error } = await supabase
-    .from("recipes")
-    .select(RECIPE_LIST_COLUMNS)
-    .order("name", { ascending: true })
-
-  if (error) throw error
-  return (data ?? []).map(mapRecipe)
+  return [...cookingRecipeData].sort(byName)
 }
 
 const getRecipeById = async (id: string): Promise<RecipeProps | null> => {
-  const { data, error } = await supabase
-    .from("recipes")
-    .select("*")
-    .eq("id", id)
-    .maybeSingle()
-
-  if (error) throw error
-  return data ? mapRecipe(data) : null
+  return cookingRecipeData.find(recipe => recipe.id === id) ?? null
 }
 
 export const recipeAPI = { getRecipes, getRecipeById }

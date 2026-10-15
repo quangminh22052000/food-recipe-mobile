@@ -1,3 +1,13 @@
+import { ImageSource } from "expo-image"
+
+export const toImageSource = (
+  image: string | number | null | undefined,
+): ImageSource | number | undefined => {
+  if (image == null || image === "") return undefined
+  if (typeof image === "string") return { uri: image }
+  return image
+}
+
 export const images = {
   appLogo: require("./app-logo.png"),
   bunBo: require("./bun-bo.webp"),

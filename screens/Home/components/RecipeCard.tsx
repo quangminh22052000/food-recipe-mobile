@@ -5,6 +5,7 @@ import { Pressable, StyleSheet } from "react-native"
 import { Text } from "react-native-paper"
 import Animated, { FadeInDown } from "react-native-reanimated"
 
+import { toImageSource } from "@/libs/common/design-system/assets/images"
 import { hp } from "@/libs/common/utils/device/responsive"
 import { RecipeProps } from "@/libs/recipe/types"
 
@@ -32,7 +33,7 @@ export const RecipeCard = (props: Props) => {
           { paddingLeft: isEven ? 0 : 8, paddingRight: isEven ? 8 : 0 },
         ]}>
         <AnimatedExpoImage
-          source={{ uri: recipe.image as string }}
+          source={toImageSource(recipe.image)}
           sharedTransitionTag={`recipe-${recipe.id}`}
           style={[styles.image, { height: index % 3 === 0 ? hp(35) : hp(25) }]}
           contentFit="cover"
